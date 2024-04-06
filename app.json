@@ -4,12 +4,12 @@
     "slug": "Hoop-App",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Hoop.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      // "image": "./assets/HoopBack.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#E0E0E0"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/Hoop.png",
+        "backgroundColor": "#E0E0E0"
+      },
+      "package": "com.michaeldev250.HoopApp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/Hoop.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "39e8e12f-87cf-4ebd-9f8c-5903a9e96c2c"
+      }
     }
   }
 }

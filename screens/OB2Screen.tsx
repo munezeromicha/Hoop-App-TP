@@ -1,9 +1,10 @@
 import { StyleSheet,View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+
 import Icon2 from '../assets/Asset2.png';
 import Message from '../assets/Message.png';
 import Call from '../assets/Call.png';
 import DotsTwo from '../assets/dotsTwo.png';
+import React from 'react';
 
 const OB2Screen = () => {
   return (

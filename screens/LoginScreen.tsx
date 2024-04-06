@@ -27,6 +27,7 @@ const LoginEmail = () => {
           <View style={styles.bottomText1}>
         <Text style={styles.lastText1}>Forgot password? Retrieve</Text>
       </View>
+      
           <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
           <View style={styles.bottomText}>
         <Text style={styles.lastText}>Don't have an account? Signup</Text>
@@ -63,10 +64,12 @@ const styles = StyleSheet.create({
     width: 390,
   },
   container:{
-    height: 650,
+    flex: 1,
+    height: 600,
     backgroundColor: '#F4F4FA',
     borderTopLeftRadius: 38,
     borderTopEndRadius: 38,
+
   },
    inputs: {
     backgroundColor: '#fff',
@@ -101,7 +104,7 @@ button: {
     textAlign: 'center',
 },
 buttonText: {
-  color: '#052E54',
+  color: '#fff',
   textAlign: 'center',
   fontSize: 20,
 },
