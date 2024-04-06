@@ -2,13 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginEmail from './screens/Login with email';
 import LoginPhone from './screens/Login with phone';
+import Register from './screens/Register';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <LoginEmail />
+      {/* <LoginEmail /> */}
       {/* <LoginPhone /> */}
-     {/* <SplashScreen /> */}
+      <Register/>
       <StatusBar style="auto" />
     </View>
   );
