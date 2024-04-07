@@ -15,8 +15,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {showSplash && <SplashScreen />}
-      {!showSplash && < Slider />}
+      < Slider />
+      {/* {showSplash && <SplashScreen />}
+      {!showSplash && < Slider />} */}
       {/* <StatusBar style="auto" /> */}
     </View>
   );
