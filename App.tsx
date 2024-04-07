@@ -7,9 +7,9 @@ import Register from './screens/Register';
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <LoginEmail /> */}
+      <LoginEmail />
       {/* <LoginPhone /> */}
-      <Register/>
+      {/* <Register/> */}
       <StatusBar style="auto" />
     </View>
   );

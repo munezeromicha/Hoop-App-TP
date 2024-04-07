@@ -1,17 +1,17 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
 import React, { useState } from 'react';
 import MaskGroup from '../assets/MaskGroup.png';
-
-
+import { Ionicons } from '@expo/vector-icons'; 
 
 const Register = () => {
-  const [fullName, setFullName] = useState('');
+  const [authentication, setAuthentication] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-  const handleFullNameChange = (text: string) => {
-    setFullName(text);
+  const handleAuthenticationChange = (text: string) => {
+    setAuthentication(text);
   };
   const handleEmailChange = (text: string) => {
     setEmail(text);
@@ -25,8 +25,12 @@ const Register = () => {
     setPassword(text);
   };
 
+  const togglePasswordVisibility = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
   const handleSubmit = () => {
-    if (fullName && email && phoneNumber && password) {
+    if (authentication && email && phoneNumber && password) {
       Alert.alert('Account Created Successfully!');
     } else {
       Alert.alert('Failed', 'Please fill in all fields');
@@ -41,16 +45,6 @@ const Register = () => {
           <View style={styles.inputs1}>
             <TextInput
               style={styles.email}
-              placeholder="Full Name"
-              keyboardType="default"
-              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-              value={fullName}
-              onChangeText={handleFullNameChange}
-            />
-          </View>
-          <View style={styles.inputs1}>
-            <TextInput
-              style={styles.email}
               placeholder="Email"
               keyboardType="email-address"
               placeholderTextColor= "rgba(45, 45, 45, 0.5)"
@@ -58,25 +52,40 @@ const Register = () => {
               onChangeText={handleEmailChange}
             />
           </View>
+        <View style={styles.inputs1}>
+        <View style={styles.passwordInputContainer}>
+            <TextInput
+              style={styles.email1}
+              placeholder="Password"
+              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
+              secureTextEntry={secureTextEntry}
+              value={password}
+              onChangeText={handlePasswordChange}
+            />
+            <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
+              <Ionicons name={secureTextEntry ? 'eye-outline' : 'eye-off-outline'} size={24} color="gray" />
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+          <View style={styles.inputs1}>
+            <TextInput
+              style={styles.email}
+              placeholder="Password Authentication"
+              keyboardType="default"
+              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
+              value={authentication}
+              onChangeText={handleAuthenticationChange}
+            />
+          </View>
           <View style={styles.inputs1}>
           <TextInput
-          style={styles.email1}
-          placeholder="+62"
+          style={styles.email}
+          placeholder="Phone number"
           keyboardType="phone-pad"
           placeholderTextColor= "rgba(45, 45, 45, 0.5)"
           value={phoneNumber}
           onChangeText={handlePhoneNumberChange}
           />
-          </View>
-          <View style={styles.inputs1}>
-            <TextInput
-              style={styles.email}
-              placeholder="Password"
-              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-              secureTextEntry
-              value={password}
-              onChangeText={handlePasswordChange}
-            />
           </View>
       <TouchableOpacity
         style={styles.button}
@@ -84,8 +93,8 @@ const Register = () => {
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
-        <Text style={styles.bottomText}>Don't have an account?
-          <Text style={styles.lastText}> Signup</Text>
+        <Text style={styles.bottomText}>Have an account
+          <Text style={styles.lastText}> Sign In</Text>
         </Text>
       </View>
         </View>
@@ -114,8 +123,19 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   email1: {
+    flex: 1,
+    height: 40,
     paddingLeft: 10,
     fontSize: 16,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+  passwordInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingRight: 6,
+    borderRadius: 5,
   },
   container: {
     height: 650,
@@ -154,19 +174,9 @@ const styles = StyleSheet.create({
     flex: 5,
     alignSelf: 'center',
     paddingTop: 10,
-    color: '#2D2D2D',
+    color: '#rgba(45, 45, 45, 0.5)',
   },
   lastText: {
-    fontSize: 14,
-    color: '#F43939',
-  },
-  bottomText1: {
-    flex: 5,
-    paddingLeft: 180,
-    paddingTop: 10,
-    color: '#2D2D2D',
-  },
-  lastText1: {
     fontSize: 14,
     color: '#F43939',
   },

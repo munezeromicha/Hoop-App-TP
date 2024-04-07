@@ -1,9 +1,33 @@
-import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, Button } from 'react-native'
-import React from 'react';
+import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, Button, TouchableWithoutFeedback, Alert } from 'react-native'
+import React, { useState } from 'react';
 import MaskGroup from '../assets/MaskGroup.png';
+import { Ionicons } from '@expo/vector-icons'; 
 
 
 const LoginEmail = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+  };
+
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+  };
+
+  const togglePasswordVisibility = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const handleSubmit = () => {
+    if ( email  && password) {
+      Alert.alert('logged in Successfully!');
+    } else {
+      Alert.alert('Failed', 'Please fill in all fields');
+    }
+  };
   return (
     <>
     <View style={styles.Main}>
@@ -14,20 +38,34 @@ const LoginEmail = () => {
           <TextInput
           style={styles.email}
           placeholder="Email"
+          value={email}
+          onChangeText={handleEmailChange}
           placeholderTextColor= "rgba(45, 45, 45, 0.5)"
           />
           </View>
-          <View style={styles.inputs1}>
-          <TextInput
-          style={styles.email}
-          placeholder="Password"
-          placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-          />
-          </View> 
+        <View style={styles.inputs}>
+        <View style={styles.passwordInputContainer}>
+            <TextInput
+              style={styles.email1}
+              placeholder="Password"
+              secureTextEntry={secureTextEntry}
+              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
+              value={password}
+              onChangeText={handlePasswordChange}
+            />
+            <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
+              <Ionicons name={secureTextEntry ? 'eye-outline' : 'eye-off-outline'} size={24} color="gray" />
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
           <Text style={styles.bottomText1}>Forgot password?
         <Text style={styles.lastText1}> Retrieve</Text>
       </Text>
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+          <TouchableOpacity
+           style={styles.button}
+           onPress={handleSubmit}
+          ><Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
           <Text style={styles.bottomText}>Don't have an account?
         <Text style={styles.lastText}> Signup</Text>
       </Text>
@@ -57,26 +95,43 @@ const styles = StyleSheet.create({
     padding: 70,
     color: '#fff',
   },
-  container:{
+  container: {
     height: 650,
     backgroundColor: '#F4F4FA',
     borderTopLeftRadius: 38,
-    borderTopEndRadius: 38,
+    borderTopRightRadius: 38,
+    paddingTop: 30,
+    paddingHorizontal: 30,
   },
-   inputs: {
-    backgroundColor: '#fff',
-    margin: 30,
-    marginTop: 60,
-    marginBottom: 0,
-    padding: 8,
-    borderRadius: 10,
-    paddingHorizontal: 10,
+  inputs: {
+   backgroundColor: '#fff',
+   margin: 0,
+   marginTop: 10,
+   marginBottom: 10,
+   padding: 8,
+   borderRadius: 10,
+   paddingHorizontal: 10,
+},
+email1: {
+  flex: 1,
+  height: 40,
+  paddingLeft: 10,
+  fontSize: 16,
+  borderColor: '#ccc',
+  borderRadius: 5,
+},
+passwordInputContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  paddingRight: 6,
+  borderColor: '#ccc',
+  borderRadius: 5,
 },
 inputs1: {
  backgroundColor: '#fff',
  margin: 30,
  marginTop: 30,
- marginBottom: 0,
  padding: 8,
  borderRadius: 10,
  paddingHorizontal: 10,
@@ -113,7 +168,6 @@ lastText: {
 bottomText1:{
   flex: 5,
   textAlign: 'right',
-  padding: 20,
   color: '#2D2D2D',
 },
 lastText1: {
