@@ -9,7 +9,7 @@ import Call from '../assets/Call.png';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import loginScreen from './LoginScreen';
+import LoginEmail from './LoginScreen';
 
 type SliderScreenProps = {
   navigation: StackNavigationProp<any, 'SliderScreen'>;
@@ -42,7 +42,7 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
   const buttonLabel = (label) => {
     return (
       <View style={{
-        marginTop: -420,
+        marginTop: -460,
         marginLeft: 325
       }}>
         <Text style={{
@@ -84,7 +84,7 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
           showSkipButton
           showNextButton={false}
           showDoneButton={false}
-          renderSkipButton={() => buttonLabel("Skip")}
+          renderSkipButton={() => buttonLabel("Skip") }
           onSkip={() => {
             setShowHomePage(true);
           }}
@@ -93,16 +93,19 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
           <TouchableOpacity style={styles.buttonOne} onPress={() => navigation.navigate('Login')}>
             <Text style={styles.buttonText}><Image source={Message} />Login with Email</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonTwo}>
+          <TouchableOpacity style={styles.buttonTwo} onPress={() => navigation.navigate('Phone')}>
             <Text style={styles.buttonTextTwo}><Image source={Call} />Login with Phone</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomText}>
-          <Text style={styles.lastText}>Don't have an account? <Text style={styles.signupText}>Signup</Text></Text>
+          <Text style={styles.lastText}>Don't have an account? <Text style={styles.signupText} onPress={() => navigation.navigate('Register')}>Signup</Text></Text>
         </View>
       </View>
     );
   }
+  return(
+    <LoginEmail />
+  )
 };
 
 const styles = StyleSheet.create({
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    marginTop: 50,
+    marginTop: 120,
     justifyContent: 'center',
     alignItems: 'center',
     height: 288,
