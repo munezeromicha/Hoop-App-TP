@@ -4,10 +4,10 @@ import MaskGroup from '../assets/MaskGroup.png';
 import CountryPicker, { Country } from 'react-native-country-picker-modal'
 import { Ionicons } from '@expo/vector-icons';
 
-const LoginPhone = () => {
+const LoginPhone: React.FC<any> = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [countryCode, setCoutryCode] = useState<string>('US');
+  const [countryCode, setCoutryCode] = useState<string>('ID');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const handlePhoneNumberChange = (value: string) => {
@@ -47,7 +47,6 @@ const LoginPhone = () => {
               withCallingCodeButton
               withCallingCode
               onSelect={onSelectCountry}
-              visible
             />
             <TextInput
               style={styles.phoneNumberInput}
@@ -84,7 +83,7 @@ const LoginPhone = () => {
           <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
         <Text style={styles.bottomText}>Don't have an account?
-          <Text style={styles.lastText}> Signup</Text>
+          <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Signup</Text>
         </Text>
       </View>
     </View>
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   container: {
-    height: 650,
+    height: '100%',
     backgroundColor: '#F4F4FA',
     borderTopLeftRadius: 38,
     borderTopRightRadius: 38,

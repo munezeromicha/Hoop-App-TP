@@ -4,7 +4,7 @@ import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
 
 
-const LoginEmail = () => {
+const LoginEmail: React.FC<any> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -21,7 +21,7 @@ const LoginEmail = () => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit= () => {
     if ( email  && password) {
       Alert.alert('logged in Successfully!');
     } else {
@@ -67,7 +67,7 @@ const LoginEmail = () => {
           ><Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           <Text style={styles.bottomText}>Don't have an account?
-        <Text style={styles.lastText}> Signup</Text>
+        <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Signup</Text>
       </Text>
        </View> 
     </View>
@@ -159,7 +159,7 @@ buttonText: {
 bottomText:{
   flex: 5,
   textAlign: 'center',
-  color: '#2D2D2D',
+  color: 'rgba(45, 45, 45, 0.5)',
 },
 lastText: {
   fontSize: 14,
@@ -168,7 +168,7 @@ lastText: {
 bottomText1:{
   flex: 5,
   textAlign: 'right',
-  color: '#2D2D2D',
+  color: 'rgba(45, 45, 45, 0.5)',
 },
 lastText1: {
   fontSize: 14,

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
 
-const Register = () => {
+const Register: React.FC<any> = ({navigation}) => {
   const [authentication, setAuthentication] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -89,7 +89,7 @@ const Register = () => {
           </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={handleSubmit}
+        onPress={() => {handleSubmit}}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   container: {
-    height: 650,
+    height: '100%',
     backgroundColor: '#F4F4FA',
     borderTopLeftRadius: 38,
     borderTopEndRadius: 38,
