@@ -7,8 +7,12 @@ import Call from '../assets/Call.png'
 import { useState } from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import React from 'react';
-import LoginEmail from './LoginScreen';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
+type SliderScreenProps = {
+  navigation: StackNavigationProp<any, 'SliderScreen'>;
+};
 const slides = [
   {
     id: 1,
@@ -30,7 +34,7 @@ const slides = [
   }
 ]
 
-export default function App() {
+const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
   const [showHomePage, setShowHomePage] = useState(false)
 
   const buttonLabel = (label) => {
@@ -64,19 +68,6 @@ export default function App() {
               />
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.description}>{item.description}</Text>
-
-              <View style={styles.buttons}>
-      <TouchableOpacity style={styles.buttonOne}>
-        <Text style={styles.buttonText}><Image source={Message} />Login with Email</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonTwo}>
-        <Text style={styles.buttonTextTwo}><Image source={Call} />Login with Phone</Text>
-      </TouchableOpacity>
-      </View>
-
-      <View style={styles.bottomText}>
-        <Text style={styles.lastText}>Don't have an account? Signup</Text>
-      </View>
             </View>
             
           )
@@ -93,12 +84,14 @@ export default function App() {
           setShowHomePage(true);
         }}
       />
+
+
     )
   }
-  return (
-      <LoginEmail/>
-  );
+
 }
+
+export default Slider;
 
 const styles = StyleSheet.create({
   container: {
@@ -106,7 +99,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0E0E0',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10
+    gap: 10,
+  },
+  slider: {
+
+zIndex: 9999,
   },
   title:{
     fontSize: 24,
@@ -135,6 +132,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 15,
+    marginTop: 450,
+    // borderWidth: 1,
 },
 buttonOne: {
     width: 300,

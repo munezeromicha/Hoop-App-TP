@@ -1,24 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import SplashScreen from './screens/SplashScreen';
-import OB1Screen from './screens/OB1Screen'
-import OB2Screen from './screens/OB2Screen'
-import OB3Screen from './screens/OB3Screen'
-import React, { useEffect, useState }from 'react';
-import Slider from './screens/slider';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import SplashScreen from "./screens/SplashScreen";
+import React, { useEffect, useState } from "react";
+import Slider from "./screens/slider";
+import Login from "./screens/LoginScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   useEffect(() => {
-    setTimeout(() => {setShowSplash(false)}, 1000)
-  },[]);
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 1000);
+  }, []);
 
   return (
     <View style={styles.container}>
-      < Slider />
-      {/* {showSplash && <SplashScreen />}
-      {!showSplash && < Slider />} */}
-      {/* <StatusBar style="auto" /> */}
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name=' ' component={Slider} />
+          <Stack.Screen name="Login" component={Login} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <StatusBar style="auto" />
     </View>
   );
 }
