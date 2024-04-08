@@ -42,9 +42,8 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
   const buttonLabel = (label) => {
     return (
       <View style={{
-        position: 'absolute',
-        top: 40,
-        left: 325
+        marginTop: -420,
+        marginLeft: 325
       }}>
         <Text style={{
           color: '#2D2D2D',
@@ -75,11 +74,11 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
             );
           }}
           activeDotStyle={{
-            marginTop: 30,
+            // marginTop: 10,
             backgroundColor: '#F43939',
           }}
           dotStyle={{
-            marginTop: 30,
+            // marginTop: 10,
             backgroundColor: '#c4c4cb',
           }}
           showSkipButton
@@ -90,7 +89,6 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
             setShowHomePage(true);
           }}
         />
-       
         <View style={styles.nonSwipingContent}>
           <TouchableOpacity style={styles.buttonOne} onPress={() => navigation.navigate('Login')}>
             <Text style={styles.buttonText}><Image source={Message} />Login with Email</Text>
@@ -98,9 +96,9 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
           <TouchableOpacity style={styles.buttonTwo}>
             <Text style={styles.buttonTextTwo}><Image source={Call} />Login with Phone</Text>
           </TouchableOpacity>
-          <View style={styles.bottomText}>
-            <Text style={styles.lastText}>Don't have an account? <Text style={styles.signupText}>Signup</Text></Text>
-          </View>
+        </View>
+        <View style={styles.bottomText}>
+          <Text style={styles.lastText}>Don't have an account? <Text style={styles.signupText}>Signup</Text></Text>
         </View>
       </View>
     );
@@ -116,11 +114,12 @@ const styles = StyleSheet.create({
     // gap: 10,
   },
   swipePart: {
+    marginVertical: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    marginTop: 30,
+    // marginTop: 30,
     fontSize: 24,
     color: '#2D2D2D',
     textAlign: 'center',
@@ -135,17 +134,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    marginTop: 140,
+    marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center',
+    height: 288,
   },
   nonSwipingContent: {
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 0,
   },
   buttonOne: {
-    width: 300,
-    height: 50,
+    width: 311,
+    height: 60,
     backgroundColor: '#2D2D2D',
     borderRadius: 15,
     justifyContent: 'center',
@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   buttonTwo: {
-    width: 300,
-    height: 50,
+    width: 311,
+    height: 60,
     backgroundColor: '#FFFFFF',
     borderRadius: 15,
     justifyContent: 'center',
@@ -173,8 +173,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bottomText: {
-    justifyContent: 'space-around',
-    marginVertical: 20,
+    // justifyContent: 'space-around',
+    marginVertical: 10,
+    alignItems: 'center',
   },
   lastText: {
     fontSize: 14,
@@ -185,4 +186,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Slider;
+export default Slider
