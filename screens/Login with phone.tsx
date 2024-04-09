@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 const LoginPhone: React.FC<any> = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [countryCode, setCoutryCode] = useState<string>('ID');
+  const [countryCode, setCoutryCode] = useState('ID');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const handlePhoneNumberChange = (value: string) => {
@@ -37,6 +37,7 @@ const LoginPhone: React.FC<any> = ({navigation}) => {
       <Image style={styles.image} source={MaskGroup} />
       <Text style={styles.glad}>Glad to see you!!</Text>
       <View style={styles.container}>
+          <View style={styles.body1}>
         <View style={styles.inputs12}>
           <View style={styles.phoneInputContainer}>
             <CountryPicker
@@ -73,17 +74,20 @@ const LoginPhone: React.FC<any> = ({navigation}) => {
             </TouchableWithoutFeedback>
           </View>
         </View>
+        </View>
         <Text style={styles.bottomText1}>Forgot password?
-          <Text style={styles.lastText1}> Retrieve</Text>
+          <Text style={styles.lastText1}>   Retrieve</Text>
         </Text>
+      <View style={styles.btn}>
         <TouchableOpacity 
         style={styles.button}
         onPress={handleSubmit}
         >
           <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
+      </View>
         <Text style={styles.bottomText}>Don't have an account?
-          <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Signup</Text>
+          <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Sign Up</Text>
         </Text>
       </View>
     </View>
@@ -98,11 +102,16 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
   },
+  body1:{
+    height: '18%',
+    paddingHorizontal: 30,
+  },
   Main: {
     backgroundColor: '#130F26',
+    height: '100%',
   },
   image: {
-    height: 200,
+    height: '20%',
     width: '100%',
   },
   glad: {
@@ -117,7 +126,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 38,
     borderTopRightRadius: 38,
     paddingTop: 30,
-    paddingHorizontal: 30,
   },
   inputs12: {
     marginBottom: 20,
@@ -161,8 +169,13 @@ email1: {
     borderColor: '#ccc',
     borderRadius: 5,
   },
+  btn:{
+    height: '50%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 30,
+  },
   button: {
-    borderWidth: 2,
     backgroundColor: '#130F26',
     padding: 15,
     borderRadius: 20,
@@ -176,6 +189,7 @@ email1: {
     fontSize: 20,
   },
   bottomText: {
+    fontWeight: '500',
     textAlign: 'center',
     color: 'rgba(45, 45, 45, 0.5)',
   },
@@ -184,7 +198,9 @@ email1: {
     color: '#F43939',
   },
   bottomText1: {
+    fontWeight: '500',
     textAlign: 'right',
+    paddingRight: 10,
     color: 'rgba(45, 45, 45, 0.5)',
     marginBottom: 10,
   },

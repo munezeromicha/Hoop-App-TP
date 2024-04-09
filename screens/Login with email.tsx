@@ -1,4 +1,4 @@
-import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, Button, TouchableWithoutFeedback, Alert } from 'react-native'
+import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Alert } from 'react-native'
 import React, { useState } from 'react';
 import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
@@ -34,6 +34,7 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
           <Image style={styles.image} source={MaskGroup}/>
         <Text style={styles.glad}>Glad to see you!!</Text>
         <View style={styles.container}>
+          <View style={styles.body1}>
           <View style={styles.inputs}>
           <TextInput
           style={styles.email}
@@ -58,16 +59,19 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
             </TouchableWithoutFeedback>
           </View>
         </View>
+      </View>
           <Text style={styles.bottomText1}>Forgot password?
-        <Text style={styles.lastText1}> Retrieve</Text>
+        <Text style={styles.lastText1} onPress={() => {navigation.navigate('forget')}}> Retrieve</Text>
       </Text>
+      <View style={styles.btn}>
           <TouchableOpacity
            style={styles.button}
            onPress={handleSubmit}
           ><Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
+      </View>
           <Text style={styles.bottomText}>Don't have an account?
-        <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Signup</Text>
+        <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Sign Up</Text>
       </Text>
        </View> 
     </View>
@@ -84,9 +88,14 @@ const styles = StyleSheet.create({
   },
   Main:{
     backgroundColor: '#130F26',
+    height: '100%',
+  },
+  body1:{
+    height: '18%',
+    paddingHorizontal: 30,
   },
   image: {
-    height: 200,
+    height: '20%',
     width: '100%',
   },
   glad:{
@@ -96,12 +105,11 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   container: {
-    height: 650,
     backgroundColor: '#F4F4FA',
     borderTopLeftRadius: 38,
     borderTopRightRadius: 38,
     paddingTop: 30,
-    paddingHorizontal: 30,
+    height: '100%',
   },
   inputs: {
    backgroundColor: '#fff',
@@ -142,13 +150,17 @@ email: {
     paddingLeft: 10,
     fontSize: 16,
 },
+btn:{
+  height: '50%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  paddingHorizontal: 30,
+},
 button: {
-    borderWidth: 2,
     backgroundColor: '#130F26',
     padding: 20,
     borderRadius: 20,
     margin: 20,
-    marginTop: 200,
     textAlign: 'center',
 },
 buttonText: {
@@ -158,6 +170,7 @@ buttonText: {
 },
 bottomText:{
   flex: 5,
+  fontWeight: '500',
   textAlign: 'center',
   color: 'rgba(45, 45, 45, 0.5)',
 },
@@ -166,8 +179,9 @@ lastText: {
   color: '#F43939',
 },
 bottomText1:{
-  flex: 5,
   textAlign: 'right',
+  fontWeight: '500',
+  paddingRight: 10,
   color: 'rgba(45, 45, 45, 0.5)',
 },
 lastText1: {

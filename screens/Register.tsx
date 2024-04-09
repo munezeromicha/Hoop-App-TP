@@ -1,7 +1,8 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Alert, TouchableWithoutFeedback } from 'react-native'
 import React, { useState } from 'react';
 import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
+// import Svg, { Circle, Rect } from 'react-native-svg';
 
 const Register: React.FC<any> = ({navigation}) => {
   const [authentication, setAuthentication] = useState('');
@@ -42,6 +43,7 @@ const Register: React.FC<any> = ({navigation}) => {
         <Image style={styles.image} source={MaskGroup} />
         <Text style={styles.glad}>Let's start!!</Text>
         <View style={styles.container}>
+          <View style={styles.body1}>
           <View style={styles.inputs1}>
             <TextInput
               style={styles.email}
@@ -72,6 +74,7 @@ const Register: React.FC<any> = ({navigation}) => {
               style={styles.email}
               placeholder="Password Authentication"
               keyboardType="default"
+              secureTextEntry
               placeholderTextColor= "rgba(45, 45, 45, 0.5)"
               value={authentication}
               onChangeText={handleAuthenticationChange}
@@ -87,14 +90,17 @@ const Register: React.FC<any> = ({navigation}) => {
           onChangeText={handlePhoneNumberChange}
           />
           </View>
+          </View>
+          <View style={styles.btn}>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {handleSubmit}}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
+      </View>
         <Text style={styles.bottomText}>Have an account
-          <Text style={styles.lastText}> Sign In</Text>
+          <Text style={styles.lastText} onPress={() => {navigation.navigate('email')}}> Sign In</Text>
         </Text>
       </View>
         </View>
@@ -109,11 +115,16 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
   },
+  body1:{
+    paddingTop: 20,
+    height:'40%',
+  },
   Main: {
     backgroundColor: '#130F26',
+    height: '100%',
   },
   image: {
-    height: 200,
+    height: '20%',
     width: '100%',
   },
   glad:{
@@ -157,12 +168,17 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 16,
   },
+  btn:{
+    height: '32%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 30,
+  },
   button: {
     backgroundColor: '#130F26',
     padding: 20,
     borderRadius: 20,
     margin: 20,
-    marginTop: 130,
     textAlign: 'center',
   },
   buttonText: {
@@ -177,6 +193,7 @@ const styles = StyleSheet.create({
     color: '#rgba(45, 45, 45, 0.5)',
   },
   lastText: {
+    fontWeight: '500',
     fontSize: 14,
     color: '#F43939',
   },
