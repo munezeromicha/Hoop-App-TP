@@ -84,7 +84,7 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
         </Text>
         <TouchableOpacity 
         style={styles.button}
-        onPress={handleSubmit}
+        onPress={()=> navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>

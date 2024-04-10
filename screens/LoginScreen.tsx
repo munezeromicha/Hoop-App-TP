@@ -67,7 +67,7 @@ const LoginEmail: React.FC<LoginScreenProps> = ({navigation}) => {
       </Text>
           <TouchableOpacity
            style={styles.button}
-           onPress={handleSubmit}
+           onPress={()=> navigation.navigate('Home')}
           ><Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           <Text style={styles.bottomText}>Don't have an account?
