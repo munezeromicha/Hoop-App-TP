@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         width: '80%',
         alignSelf: 'center',
         padding: 10,
+        borderRadius: 10,
         height: '30%',
         backgroundColor: '#fff',
         alignItems: 'center'
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         backgroundColor: '#fff',
         borderRadius: 10,
-        height: '20%',
+        height: '18%',
     },
     sub: {
         width: '100%',
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 15,
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 25,
         justifyContent: 'center'
     },
     pay1: {
