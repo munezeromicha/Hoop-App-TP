@@ -18,6 +18,8 @@ import Payment from './screens/payment';
 import PaymentDetail from './screens/paymentDetails';
 import PaymentSuccess from './screens/paymentSuccess';
 import ParkingRoute from './screens/parkingRoute';
+import Explore from './screens/explore';
+import PlanPro from './screens/choosePlanPro';
 
 
 const Stack = createStackNavigator();
@@ -40,7 +42,9 @@ export default function App() {
     {/* <Payment/> */}
     {/* <PaymentDetail /> */}
     {/* <PaymentSuccess /> */}
-    <ParkingRoute />
+    {/* <ParkingRoute /> */}
+    {/* <Explore /> */}
+    <PlanPro/>
     {/* <NavigationContainer>
       <Stack.Navigator>
           <Stack.Screen name='slides' component={Slider}  options={{headerShown: false}}/>
