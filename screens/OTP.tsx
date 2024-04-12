@@ -128,12 +128,12 @@ const styles = StyleSheet.create({
       },
       input: {
         width: '13%',
-        height: '20%',
+        height: '50%',
         borderBottomWidth: 2,
         borderColor: 'rgba(45, 45, 45, 0.1)',
         margin: 5,
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 40,
       },
       time:{
         alignSelf: 'center',

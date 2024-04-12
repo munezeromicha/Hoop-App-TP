@@ -10,6 +10,11 @@ import Forget from './screens/forgotPassword';
 import Confirm from './screens/confirm';
 import OTP from './screens/OTP';
 import Code from './screens/code'
+import Home from './screens/home';
+import DetailsParking from './screens/detailParking';
+import ParkingDistance from './componets/distance';
+import BookDetail from './screens/bookDetail';
+import Payment from './screens/payment';
 
 
 const Stack = createStackNavigator();
@@ -24,7 +29,12 @@ export default function App() {
     {/* <Register/>   */}
     {/* <Confirm/> */}
     {/* <OTP/> */}
-    <Code/>
+    {/* <Code/> */}
+    {/* <Home/> */}
+    {/* <DetailsParking/> */}
+    {/* <ParkingDistance/> */}
+    {/* <BookDetail/> */}
+    <Payment/>
     {/* <NavigationContainer>
       <Stack.Navigator>
           <Stack.Screen name='slides' component={Slider}  options={{headerShown: false}}/>

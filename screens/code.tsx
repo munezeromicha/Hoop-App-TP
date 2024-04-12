@@ -60,8 +60,9 @@ const Code: React.FC<any> = ({navigation})=> {
         </View>
     <View style={styles.container2}>
       <TouchableOpacity onPress={handleAuthenticate} style={styles.touchable}>
-        <MaterialCommunityIcons name="fingerprint" size={50} color="black" style={styles.icon}/>
+        <MaterialCommunityIcons name="fingerprint" size={50} color="rgba(45, 45, 45, 0.4)"/>
       </TouchableOpacity>
+    <Text style={styles.scan}>Scan <Text style={styles.verify}>to verify for easy security</Text></Text>
     </View>
             </View>
             </>
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     text:{
         paddingTop: 15,
         textAlign: 'center',
-        color: 'rgba(45, 45, 45, 0.7)',
+        color: 'rgba(45, 45, 45, 0.5)',
         lineHeight: 26,
         fontSize: 18,
         fontWeight: '400',
@@ -110,15 +111,16 @@ const styles = StyleSheet.create({
       },
       input: {
         width: '13%',
-        height: '20%',
+        height: '50%',
         borderBottomWidth: 2,
         borderColor: 'rgba(45, 45, 45, 0.1)',
         margin: 5,
         textAlign: 'center',
-        fontSize: 20,
-      },
+        fontSize: 40,
+      }, 
       container2:{
         flex: 1,
+        // backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center',
       },
@@ -127,5 +129,12 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderRadius: 10,
         padding: 10,
+      },
+      scan:{
+        paddingTop: 15,
+        color: 'red'
+      },
+      verify:{
+        color: 'rgba(45, 45, 45, 0.5)',
       }
 })
