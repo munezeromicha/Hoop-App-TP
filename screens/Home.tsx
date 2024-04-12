@@ -25,7 +25,7 @@ const Home: React.FC<HomeScreenProps> = ({navigation}) => {
           <View style={styles.TextGroup}>
             <TouchableOpacity onPress={()=>navigation.navigate('Profile')}><Text style={styles.glad}>Hola, Diane👋🏻</Text></TouchableOpacity>
             <Text style={styles.find}>Find an easy parking spot</Text>
-            <TouchableOpacity style={styles.NotifyButton}>
+            <TouchableOpacity style={styles.NotifyButton} onPress={()=>navigation.navigate('Notifications')}>
             <Text ><Image source={Notification}/></Text>
             </TouchableOpacity>
 
