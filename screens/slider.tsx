@@ -8,7 +8,6 @@ import Message from '../assets/Message.png';
 import Call from '../assets/Call.png';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
 import LoginEmail from './LoginScreen';
 
 type SliderScreenProps = {

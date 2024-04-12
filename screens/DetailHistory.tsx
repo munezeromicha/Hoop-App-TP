@@ -3,7 +3,10 @@ import React from 'react'
 import ArrowLeft from '../assets/ArrowLeft.png';
 import ParkingOne from '../assets/ParkingOne.png';
 import compas from '../assets/location.png';
+import locIcon from '../assets/LocationIcon.png';
+import clock from '../assets/TimeCircle.png';
 import { StackNavigationProp } from '@react-navigation/stack';
+import LinearTextGradient from 'react-native-text-gradient';
 
 type DetailHistoryProps = {
     navigation: StackNavigationProp <any, 'DetailHistoryScreen'>
@@ -36,13 +39,28 @@ const DetailHistory: React.FC <DetailHistoryProps>= ({navigation}) => {
             <Text style={{fontSize: 14, color:'#a4a4a8'}}>123 Dhaka Street</Text>
         </View>
 
-        <View style={{flexDirection:'row', gap: 20,alignItems:'center'}}>
+        <View style={{ gap: 30, alignItems:'center'}}>
+
+        <View style={{ gap: 20,alignItems:'center',flexDirection:'row',}}>
         <View style={{alignItems: 'center', justifyContent: 'center',width:109,height: 32,borderRadius: 5,backgroundColor:'#FFF3F3'}}>
-            <Text style={{color:'#F43939',fontSize: 14}}>A-6</Text>
+            <Text style={{color:'#F43939',fontSize: 14}}><Image source={locIcon}/> A-6</Text>
         </View>
         <View style={{alignItems: 'center', justifyContent: 'center',width:109,height: 32,borderRadius: 5,backgroundColor:'#FFF3F3'}}>
-            <Text style={{color:'#F43939',fontSize: 14}}>4 hours</Text>
+            <Text style={{color:'#F43939',fontSize: 14}}><Image source={clock}/>  4 hours</Text>
         </View>
+        </View>
+
+        <View style={{ gap: 15}}>
+            <Text style={{fontSize: 20}}>Information</Text>
+
+            <Text style={styles.paragraph}>24/7 parking facility with cctv camera, professional security guard, chair disble, floor parking list facilities. You will get hassle parking facilities with 35% discount on first parking...</Text>
+
+
+
+        </View>
+        <TouchableOpacity style={{backgroundColor: '#130F26', width: 197, height: 54, alignItems: 'center', justifyContent:'center', borderRadius: 15, marginTop: '-27%'}}>
+                <Text style={{fontSize: 16,color:'#FFFFFF'}}>Repeat Booking</Text>
+            </TouchableOpacity>
         </View>
 
         </View>
@@ -54,8 +72,12 @@ const DetailHistory: React.FC <DetailHistoryProps>= ({navigation}) => {
 export default DetailHistory
 
 const styles = StyleSheet.create({
+    paragraph:{
+        fontSize: 18,
+        color: 'rgba(45,45,45,1)',
+        width: 311
+    },
     locate:{
-        
         width: 52,
         height: 55,
         borderRadius: 50,

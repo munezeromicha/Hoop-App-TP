@@ -12,7 +12,7 @@ type PhoneScreenProps = {
 const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [countryCode, setCoutryCode] = useState<string>('US');
+  const [countryCode, setCoutryCode] = useState<string>('ID');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const handlePhoneNumberChange = (value: string) => {
@@ -79,9 +79,12 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
             </TouchableWithoutFeedback>
           </View>
         </View>
+        <TouchableOpacity onPress={()=>navigation.navigate('OTP')}>
         <Text style={styles.bottomText1}>Forgot password?
-          <Text style={styles.lastText1}> Retrieve</Text>
+          <Text style={styles.lastText1} onPress={()=> navigation.navigate('')}> Retrieve</Text>
         </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity 
         style={styles.button}
         onPress={()=> navigation.navigate('Home')}
