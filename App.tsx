@@ -10,6 +10,7 @@ import Home from "./screens/Home";
 import Explore from "./screens/Explore";
 import History from "./screens/History";
 import Profile from "./screens/Profile";
+import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
 import DetailParkingOne from "./screens/ParkingScreenOne";
 import { NavigationContainer } from "@react-navigation/native";
@@ -37,6 +38,7 @@ export default function App() {
           <Stack.Screen name="Explore" component={Explore} options={{headerShown: false}}/>
           <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+          <Stack.Screen name="DetailHistory" component={DetailHistory} options={{headerShown: false}}/>
           <Stack.Screen name="Notifications" component={Notifications} options={{headerShown: false}}/>
           <Stack.Screen name="DetailParkingOne" component={DetailParkingOne} options={{headerShown: false}}/>
         </Stack.Navigator>

@@ -1,10 +1,8 @@
 import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-native'
 import React from 'react';
 import Search from '../assets/SearchTwo.png';
-import buttonOne from '../assets/Group189.png';
 import Rectangle1 from '../assets/Rectangle59.png';
 import Rectangle2 from '../assets/Rectangle60.png';
-import compas from '../assets/location.png';
 import Filter from '../assets/Filter.png';
 import clockIcon from '../assets/TimeCircle.png';
 import locIcon from '../assets/LocationIcon.png';
@@ -47,7 +45,7 @@ const History: React.FC<HistoryScreenProps> = ({navigation}) => {
       <View style={styles.blockFour}>  
        
       <View style={styles.boxTwo}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={()=>navigation.navigate('DetailHistory')}>
                     <View style={styles.insideBox} >
                         <Image source={Rectangle1}/>
 
@@ -73,7 +71,8 @@ const History: React.FC<HistoryScreenProps> = ({navigation}) => {
                         <Text style={styles.dates}>12 Aug</Text>
                         </View>
 
-                    </View></TouchableOpacity>
+                    </View>
+                    </TouchableOpacity>
 
 
                 </View> 
