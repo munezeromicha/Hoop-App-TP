@@ -12,6 +12,7 @@ import Request from "./screens/RequestCode";
 import Explore from "./screens/Explore";
 import History from "./screens/History";
 import Profile from "./screens/Profile";
+import EditProfile from "./screens/EditProfile";
 import Upgrade from "./screens/UpgradePro";
 import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
@@ -19,6 +20,7 @@ import DetailParkingOne from "./screens/ParkingScreenOne";
 import Forget from "./screens/ForgetPassword";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +46,7 @@ export default function App() {
           <Stack.Screen name="Explore" component={Explore} options={{headerShown: false}}/>
           <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+          <Stack.Screen name="Editprofile" component={EditProfile} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
           <Stack.Screen name="Request" component={Request} options={{headerShown: false}}/>
           <Stack.Screen name="Forget" component={Forget} options={{headerShown: false}}/>

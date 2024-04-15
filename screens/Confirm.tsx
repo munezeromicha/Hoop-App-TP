@@ -34,7 +34,7 @@ const Confirm: React.FC<any> = ({ navigation }) => {
             <Text
               style={styles.lastText}
               onPress={() => {
-                navigation.navigate("forget");
+                navigation.navigate("Forget");
               }}
             >
               try another email address

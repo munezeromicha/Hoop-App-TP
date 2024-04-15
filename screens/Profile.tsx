@@ -28,17 +28,23 @@ type HomeScreenProps = {
 };
 
 const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-  { label: "Item 4", value: "4" },
-  { label: "Item 5", value: "5" },
-  { label: "Item 6", value: "6" },
-  { label: "Item 7", value: "7" },
-  { label: "Item 8", value: "8" },
+  { label: "Edit Profile", value: "1" },
+
 ];
 const Pro = [
   { label: "Upgrade Pro", value: "1" },
+
+];
+const Terms = [
+  { label: "Terms & Conditions", value: "1" },
+
+];
+const Questions = [
+  { label: "FAQ", value: "1" },
+
+];
+const Settings = [
+  { label: "Change Password", value: "1" },
 
 ];
 
@@ -49,7 +55,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   const handleOnPress = (item: { label: string; value: string }) => {
     // Navigate to the next page
-    navigation.navigate('Home', { item });
+    navigation.navigate('EditProfile', { item });
   };
 
   const handleOnPressTwo = (item: { label: string; value: string }) => {
@@ -97,7 +103,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               value={value}
               onChange={item => {
                 setValue(item.value);
-                // handleOnPress(item);
+                handleOnPress(item);
               }}
               renderLeftIcon={() => (
                 <Image source={Profile} style={styles.icon} />
@@ -135,7 +141,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
-              data={data}
+              data={Terms}
               search
               maxHeight={300}
               labelField="label"
@@ -158,7 +164,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
-              data={data}
+              data={Questions}
               search
               maxHeight={300}
               labelField="label"
@@ -181,7 +187,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
-              data={data}
+              data={Settings}
               search
               maxHeight={300}
               labelField="label"

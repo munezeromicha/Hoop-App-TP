@@ -53,7 +53,6 @@ const Upgrade: React.FC<SliderScreenProps> = ({ navigation }) => {
   if (!showHomePage) {
     return (
       <View style={styles.container}>
-        <View style={styles.BlockOne}>
           <View style={styles.insideOne}>
             <TouchableOpacity
               style={styles.returnBtn}
@@ -63,7 +62,7 @@ const Upgrade: React.FC<SliderScreenProps> = ({ navigation }) => {
             </TouchableOpacity>
             <Text style={styles.title}>Upgrade</Text>
           </View>
-        </View>
+
         <AppIntroSlider
           data={swipe}
           renderItem={({ item }) => {
@@ -95,17 +94,13 @@ const Upgrade: React.FC<SliderScreenProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  BlockOne: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   title: {
     fontSize: 20,
   },
   insideOne: {
     flexDirection: "row",
-    gap: 30,
+    gap: 80,
+    marginLeft: '-27%'
   },
   returnBtn: {
     justifyContent: "center",
@@ -115,7 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#EAEAF3",
     borderRadius: 10,
   },
-
   boxOne: {
     width: 257,
     height: 372,
@@ -124,17 +118,19 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#E0E0E0",
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: "center",
+    // justifyContent: "center",
+    gap: 70,
+    marginTop: "25%",
   },
   swipePart: {
     // marginVertical: 2,
     justifyContent: "center",
     alignItems: "center",
+    gap: 20,
+    borderWidth: 0.5,
   },
   titleOne: {
-    // marginTop: 30,
     fontSize: 24,
     color: "#2D2D2D",
     textAlign: "center",
@@ -142,64 +138,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
   },
   description: {
-    marginTop: 10,
+    // marginTop: 10,
     fontSize: 16,
     color: "#2D2D2D",
     width: 250,
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-  },
-  image: {
-    marginTop: 120,
-    justifyContent: "center",
-    alignItems: "center",
-    height: 288,
-  },
-  nonSwipingContent: {
-    alignItems: "center",
-    marginTop: 0,
-  },
-  buttonOne: {
-    width: 311,
-    height: 60,
-    backgroundColor: "#2D2D2D",
-    borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    marginVertical: 10,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  buttonTwo: {
-    width: 311,
-    height: 60,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
-  },
-  buttonTextTwo: {
-    color: "#2D2D2D",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  bottomText: {
-    // justifyContent: 'space-around',
-    marginVertical: 10,
-    alignItems: "center",
-  },
-  lastText: {
-    fontSize: 14,
-    color: "#2D2D2D",
-  },
-  signupText: {
-    color: "#F43939",
   },
 });
 
