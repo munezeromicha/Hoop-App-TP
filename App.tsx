@@ -46,7 +46,7 @@ export default function App() {
           <Stack.Screen name="Explore" component={Explore} options={{headerShown: false}}/>
           <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
-          <Stack.Screen name="Editprofile" component={EditProfile} options={{headerShown: false}}/>
+          <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
           <Stack.Screen name="Request" component={Request} options={{headerShown: false}}/>
           <Stack.Screen name="Forget" component={Forget} options={{headerShown: false}}/>
