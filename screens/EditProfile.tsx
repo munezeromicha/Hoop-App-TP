@@ -3,7 +3,7 @@ import React from 'react'
 
 const EditProfile = () => {
   return (
-    <View>
+    <View style={styles.bigBlock}>
       <Text>EditProfile</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const EditProfile = () => {
 
 export default EditProfile
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+bigBlock:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+}
+})

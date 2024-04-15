@@ -12,7 +12,7 @@ import Request from "./screens/RequestCode";
 import Explore from "./screens/Explore";
 import History from "./screens/History";
 import Profile from "./screens/Profile";
-import EditProfile from "./screens/EditProfile";
+import Edit from "./screens/EditProfile";
 import Upgrade from "./screens/UpgradePro";
 import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
@@ -46,7 +46,7 @@ export default function App() {
           <Stack.Screen name="Explore" component={Explore} options={{headerShown: false}}/>
           <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
-          <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown: false}}/>
+          <Stack.Screen name="Edit" component={Edit} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
           <Stack.Screen name="Request" component={Request} options={{headerShown: false}}/>
           <Stack.Screen name="Forget" component={Forget} options={{headerShown: false}}/>

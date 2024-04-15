@@ -53,9 +53,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   const navigations = useNavigation();
 
-  const handleOnPress = (item: { label: string; value: string }) => {
+  const handleOnPressOne = (item: { label: string; value: string }) => {
     // Navigate to the next page
-    navigation.navigate('EditProfile', { item });
+    navigation.navigate('Edit', { item });
   };
 
   const handleOnPressTwo = (item: { label: string; value: string }) => {
@@ -103,7 +103,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               value={value}
               onChange={item => {
                 setValue(item.value);
-                handleOnPress(item);
+                handleOnPressOne(item);
               }}
               renderLeftIcon={() => (
                 <Image source={Profile} style={styles.icon} />
