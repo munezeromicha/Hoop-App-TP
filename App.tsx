@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Slider from "./screens/slider";
 import Login from "./screens/LoginScreen";
 import Phone from "./screens/LoginWithPhone";
@@ -9,7 +9,7 @@ import Home from "./screens/Home";
 import OTP from "./screens/OTP";
 import Confirm from "./screens/Confirm";
 import Request from "./screens/RequestCode";
-import Explore from "./screens/Explore";
+import Explore from "./screens/EditProfile";
 import History from "./screens/History";
 import Profile from "./screens/Profile";
 import Edit from "./screens/EditProfile";
@@ -20,6 +20,7 @@ import DetailParkingOne from "./screens/ParkingScreenOne";
 import Forget from "./screens/ForgetPassword";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React = require("react");
 
 
 const Stack = createNativeStackNavigator();
@@ -57,7 +58,7 @@ export default function App() {
       </NavigationContainer>
       <StatusBar style="auto" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

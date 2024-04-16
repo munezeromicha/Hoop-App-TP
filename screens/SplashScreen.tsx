@@ -1,6 +1,7 @@
 import { StyleSheet,View, Text, Image } from 'react-native'
-import React from 'react';
+// import React from 'react';
 import Hoop from '../assets/Hoop.png';
+import React = require('react');
 
 const SplashScreen = () => {
   return (

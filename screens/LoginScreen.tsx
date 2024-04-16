@@ -9,10 +9,11 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import MaskGroup from "../assets/MaskGroup.png";
 import { Ionicons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
+import React = require("react");
 
 type LoginScreenProps = {
   navigation: StackNavigationProp<any, "LoginScreen">;

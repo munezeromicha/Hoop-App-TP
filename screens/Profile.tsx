@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import MaskGroup from "../assets/MaskGroup.png";
 import ProfilePic from "../assets/EllipsePic.png";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -22,6 +22,7 @@ import Hphone from "../assets/headphone.png";
 import RightArrow from "../assets/RightArrow.png";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from '@react-navigation/native';
+import React = require("react");
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<any, "HomeScreen">;
