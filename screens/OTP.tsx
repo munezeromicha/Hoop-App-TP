@@ -1,7 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Alert, Pressable } from 'react-native'
 import back from '../assets/Group4.png';
 import { MaterialIcons } from '@expo/vector-icons';
+import React = require('react');
 
 
 const OTP: React.FC<any> = ({navigation})=>{
@@ -47,7 +48,7 @@ const OTP: React.FC<any> = ({navigation})=>{
         <>
         <View style={styles.Main}>
         <View style={styles.back}>
-          <Pressable onPress={ () =>{navigation.navigate('phone')}}>
+          <Pressable onPress={ () =>{navigation.navigate('Phone')}}>
             <Image source={back}/>
             </Pressable>
             <Text style={styles.verify}>OTP Verification</Text>

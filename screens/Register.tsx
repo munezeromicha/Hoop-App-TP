@@ -1,10 +1,15 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Alert, TouchableWithoutFeedback } from 'react-native'
-import React, { useState } from 'react';
+import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
+import { useState } from 'react';
 import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
-// import Svg, { Circle, Rect } from 'react-native-svg';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React = require('react');
 
-const Register: React.FC<any> = ({navigation}) => {
+type RegisterScreenProps = {
+  navigation: StackNavigationProp<any, 'RegisterScreen'>;
+};
+
+const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
   const [authentication, setAuthentication] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
