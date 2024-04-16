@@ -11,7 +11,6 @@ With Hoop, users can easily search for available car spots based on their locati
 
 ### Getting Started
 
-List of steps to get started (e.g. clone repo, submodule, .env file, etc)
 <code>clone: https://github.com/munezeromicha/Hoop-App-TP.git</code>
 
 ### Run The Service
