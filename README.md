@@ -4,7 +4,7 @@
 
 # Description
 
-3-5 sentences describing the code and what its purpose is
+This App which is Responsible for Renting the car spot 
 
 ## Documentation
 
@@ -16,19 +16,17 @@ Step-by-step instructions on how to get the code set up locally. This may includ
 
 ### Dependencies
 
-List of libraries, tools, etc needed (e.g. yarn, node.js, python, etc)
+**expo**
+**React native**
 
 ### Getting Started
 
 List of steps to get started (e.g. clone repo, submodule, .env file, etc)
+<code>clone: https://github.com/munezeromicha/Hoop-App-TP.git</code>
 
 ### Run The Service
 
-List of steps to run the service (e.g. docker commands)
-
-### Microservices
-
-List out the microservices if any that this repo uses
+<code>npm start</code>
 
 ## Testing
 
