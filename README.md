@@ -1,18 +1,8 @@
-## Repo Name [codeclimate badge] [testing badge]
+# Hoop: Your Convenient Car Spot Rental App
 
-1 sentence tagline
+Hoop is a convenient mobile application designed to streamline the process of renting car spots. Whether you're in need of a spot for a day or a month, Hoop connects you with available spots in your desired location, making parking a hassle-free experience.
 
-# Description
-
-This App which is Responsible for Renting the car spot 
-
-## Documentation
-
-List of endpoints exposed by the service
-
-## Setup
-
-Step-by-step instructions on how to get the code set up locally. This may include:
+With Hoop, users can easily search for available car spots based on their location, duration, and budget preferences. The intuitive interface allows for quick browsing and booking, ensuring that you find the perfect spot for your vehicle with just a few taps.
 
 ### Dependencies
 
@@ -28,14 +18,13 @@ List of steps to get started (e.g. clone repo, submodule, .env file, etc)
 
 <code>npm start</code>
 
-## Testing
+Key Features:
+- **Location-Based Search:** Find car spots near your current location or any specified area.
+- **Flexible Booking Options:** Rent spots for a few hours, a day, or longer-term rentals.
+- **Secure Payments:** Process payments securely within the app, eliminating the need for cash transactions.
+- **User Ratings and Reviews:** Make informed decisions by reading reviews and ratings from previous renters.
+- **24/7 Customer Support:** Get assistance whenever you need it with our dedicated customer support team.
 
-Step-by-step instructions on how to run the tests so that the developer can be sure they've set up the code correctly
+Download Hoop now and say goodbye to parking woes forever!
 
-## Contribute
-
-Any instructions needed to help others contribute to this repository
-
-## Deployment
-
-Step-by-step instructions so that the developer can understand how code gets updated
+![Hoop App Screenshot](https://github.com/munezeromicha/Hoop-App-TP/blob/main/assets/HoopBack.png)
