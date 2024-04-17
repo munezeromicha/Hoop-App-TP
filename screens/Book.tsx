@@ -34,7 +34,7 @@ const Book: React.FC<BookScreenProps> = ({navigation}) => {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={{backgroundColor: '#130F26', borderRadius: 15,width: 197,height: 54,justifyContent: 'center', alignItems:'center'}} >
+                    <TouchableOpacity style={{backgroundColor: '#130F26', borderRadius: 15,width: 197,height: 54,justifyContent: 'center', alignItems:'center'}} onPress={()=> navigation.navigate('BookDetail')}>
                         <Text style={{fontSize: 16,color:'#FFFFFF'}}>Pay</Text>
                     </TouchableOpacity>
                 </View>

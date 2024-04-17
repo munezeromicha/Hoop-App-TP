@@ -23,7 +23,7 @@ const PaymentSuccess: React.FC<any> = ({navigation})=> {
               </View>
             </View>
             <View style={styles.bottom}>
-                    <Pressable style={styles.pay}>
+                    <Pressable style={styles.pay} onPress={()=> navigation.navigate('Home')}>
                         <Text style={styles.pay1}>Back to Home</Text>
                     </Pressable>
                     </View>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
       pay: {
           backgroundColor: '#130F26',
           width: '90%',
-          height: '30%',
+          height: '50%',
           alignSelf: 'center',
           borderRadius: 15,
           alignItems: 'center',
@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
           justifyContent: 'center'
       },
       pay1: {
-          color: '#fff',
+          color: '#FFFFFF',
           fontSize: 20,
-          fontWeight: '300'
+          fontWeight: 'bold'
       },
 })

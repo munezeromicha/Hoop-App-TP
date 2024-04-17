@@ -16,7 +16,7 @@ const BookDetail: React.FC<any> = ({ navigation }) => {
         <>
             <View style={styles.Main}>
                 <View style={styles.back}>
-                    <Pressable onPress={() => { navigation.navigate('phone') }}>
+                    <Pressable onPress={() => { navigation.navigate('Book') }}>
                         <Image source={back} />
                     </Pressable>
                     <Text style={styles.detail}>Book Details</Text>
@@ -52,7 +52,7 @@ const BookDetail: React.FC<any> = ({ navigation }) => {
                 </View>
                 <View style={styles.include1}>
                     <Text style={styles.dollar}>$35,00</Text>
-                    <Pressable style={styles.pay}>
+                    <Pressable style={styles.pay} onPress={()=> navigation.navigate('Payment')}>
                         <Text style={styles.pay1}>Pay</Text>
                     </Pressable>
                 </View>
@@ -186,8 +186,8 @@ const BookDetail: React.FC<any> = ({ navigation }) => {
             justifyContent: 'center'
         },
         pay1:{
-            color: '#fff',
+            color: '#FFFFFF',
             fontSize: 16,
-            fontWeight: '100'
+            fontWeight: 'bold',
         }
     });

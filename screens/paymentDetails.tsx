@@ -33,7 +33,7 @@ const PaymentDetail: React.FC<any> = ({ navigation }) => {
         <>
             <View style={styles.Main}>
                 <View style={styles.back}>
-                    <Pressable onPress={() => { navigation.navigate('phone') }}>
+                    <Pressable onPress={() => { navigation.navigate('Payment') }}>
                         <Image source={require('../assets/Group4.png')} />
                     </Pressable>
                     <Text style={styles.detail}>Payment Details</Text>
@@ -96,7 +96,7 @@ const PaymentDetail: React.FC<any> = ({ navigation }) => {
                             )}
                         </TouchableOpacity>
                     </View>
-                    <Pressable style={styles.pay}>
+                    <Pressable style={styles.pay} onPress={()=> navigation.navigate('PaymentSuccess')}>
                         <Text style={styles.pay1}>Pay now</Text>
                     </Pressable>
                 </View>
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     pay: {
         backgroundColor: '#130F26',
         width: '80%',
-        height: '8%',
+        height: '10%',
         alignSelf: 'center',
         borderRadius: 15,
         alignItems: 'center',
@@ -232,6 +232,6 @@ const styles = StyleSheet.create({
     pay1: {
         color: '#fff',
         fontSize: 20,
-        fontWeight: '300'
+        fontWeight: 'bold'
     },
 });

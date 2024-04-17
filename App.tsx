@@ -15,6 +15,10 @@ import History from "./screens/History";
 import Profile from "./screens/Profile";
 import Track from "./screens/TrackingPark";
 import Edit from "./screens/EditProfile";
+import BookDetail from "./screens/BookDetail";
+import Payment from "./screens/Payment";
+import PaymentSuccess from "./screens/PaymentSuccess";
+import PaymentDetails from "./screens/PaymentDetails";
 import Upgrade from "./screens/UpgradePro";
 import ShowMap from "./screens/ShowMap";
 import ChooseSpace from "./screens/ChooseSpace";
@@ -53,7 +57,11 @@ export default function App() {
           <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
           <Stack.Screen name="Track" component={Track} options={{headerShown: false}}/>
+          <Stack.Screen name="Payment" component={Payment} options={{headerShown: false}}/>
           <Stack.Screen name="Edit" component={Edit} options={{headerShown: false}}/>
+          <Stack.Screen name="PaymentSuccess" component={PaymentSuccess} options={{headerShown: false}}/>
+          <Stack.Screen name="PaymentDetails" component={PaymentDetails} options={{headerShown: false}}/>
+          <Stack.Screen name="BookDetail" component={BookDetail} options={{headerShown: false}}/>
           <Stack.Screen name="ChooseSpace" component={ChooseSpace} options={{headerShown: false}}/>
           <Stack.Screen name="ShowMap" component={ShowMap} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
