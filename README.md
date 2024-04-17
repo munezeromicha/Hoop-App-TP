@@ -1,5 +1,7 @@
-# Hoop: Your Convenient Car Spot Rental App
+# Hoop App </br>
+Your Convenient Car Spot Rental App
 
+### Description
 Hoop is a convenient mobile application designed to streamline the process of renting car spots. Whether you're in need of a spot for a day or a month, Hoop connects you with available spots in your desired location, making parking a hassle-free experience.
 
 With Hoop, users can easily search for available car spots based on their location, duration, and budget preferences. The intuitive interface allows for quick browsing and booking, ensuring that you find the perfect spot for your vehicle with just a few taps.
@@ -13,12 +15,12 @@ With Hoop, users can easily search for available car spots based on their locati
 ### Getting Started
 
 1.Clone this repository to your local machine. 
-  This is the link you use to clone the repository: <code>https://github.com/munezeromicha/Hoop-App-TP.git</code>
-2.Navigate to the project directory.
-3.Run npm install to install all dependencies required.
+  This is the link you use to clone the repository: <code>https://github.com/munezeromicha/Hoop-App-TP.git</code></br>
+2.Navigate to the project directory.</br>
+3.Run npm install to install all dependencies required.</br>
 
 ### Run The Service
-To start the project you use the script below:
+To start the project you use the script below:</br>
 <code>npm start</code>
 
 Key Features:
