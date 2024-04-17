@@ -3,9 +3,13 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, TouchableWi
 import back from '../assets/Group4.png';
 import Location from '../assets/Rectangle104.png';
 import { MaterialIcons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+type PaymentScreenProps = {
+    navigation: StackNavigationProp <any, 'PaymentScreen'>
+}
 
-const Payment: React.FC<any> = ({ navigation }) => {
+const Payment: React.FC<PaymentScreenProps> = ({ navigation }) => {
     const [distance, setDistance] = useState<number | null>(null);
 
 
@@ -13,10 +17,10 @@ const Payment: React.FC<any> = ({ navigation }) => {
         <>
             <View style={styles.Main}>
                 <View style={styles.back}>
-                    <Pressable onPress={() => { navigation.navigate('phone') }}>
+                    <Pressable onPress={() => { navigation.navigate('BookDetail') }}>
                         <Image source={back} />
                     </Pressable>
-                    <Text style={styles.detail}>Book Details</Text>
+                    <Text style={styles.detail}>Payment</Text>
                 </View>
                 <View style={styles.mainCont}>
                     <Image source={Location} />
@@ -53,7 +57,7 @@ const Payment: React.FC<any> = ({ navigation }) => {
                         <Text style={styles.dollar}>$35,00</Text>
                     </View>
                 </View>
-                <Pressable style={styles.pay}>
+                <Pressable style={styles.pay} onPress={() => navigation.navigate('PaymentDetails')}>
                     <Text style={styles.pay1}>Pay now</Text>
                 </Pressable>
             </View>
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
     pay1: {
         color: '#fff',
         fontSize: 20,
-        fontWeight: '300'
+        fontWeight: 'bold'
     },
     boxTwo: {
         fontSize: 16,
