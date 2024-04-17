@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-native'
 import React from 'react';
 import Rectangle2 from '../assets/Rectangle60.png';
-import compas from '../assets/location.png';
+import compas from '../assets/locCompas.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const Explore: React.FC<any> = ({navigation}) => {
@@ -21,7 +21,7 @@ const Explore: React.FC<any> = ({navigation}) => {
     </View>
 
       <View style={styles.blockThree}>  
-        <TouchableOpacity style={styles.buttonOneIcon} onPress={()=>navigation.navigate('History')}>
+        <TouchableOpacity style={styles.buttonOneIcon} onPress={()=>navigation.navigate('ShowMap')}>
             <Image source={require('../assets/Group189.png')} />
         </TouchableOpacity>
         <Text style={styles.textBlockThree}>Most Popular Most Wanted</Text>

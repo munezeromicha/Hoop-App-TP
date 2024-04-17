@@ -2,7 +2,7 @@ import { StyleSheet, Text, View,Image,TouchableOpacity } from 'react-native'
 import React from 'react'
 import ArrowLeft from '../assets/ArrowLeft.png';
 import ParkingOne from '../assets/ParkingOne.png';
-import compas from '../assets/location.png';
+import compas from '../assets/locCompas.png';
 import locIcon from '../assets/LocationIcon.png';
 import clock from '../assets/TimeCircle.png';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -58,7 +58,7 @@ const DetailHistory: React.FC <DetailHistoryProps>= ({navigation}) => {
 
 
         </View>
-        <TouchableOpacity style={{backgroundColor: '#130F26', width: 197, height: 54, alignItems: 'center', justifyContent:'center', borderRadius: 15, marginTop: '-27%'}}>
+        <TouchableOpacity style={{backgroundColor: '#130F26', width: 197, height: 54, alignItems: 'center', justifyContent:'center', borderRadius: 15, marginTop: '-5%'}}>
                 <Text style={{fontSize: 16,color:'#FFFFFF'}}>Repeat Booking</Text>
             </TouchableOpacity>
         </View>

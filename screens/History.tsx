@@ -5,7 +5,7 @@ import Rectangle1 from '../assets/Rectangle59.png';
 import Rectangle2 from '../assets/Rectangle60.png';
 import Filter from '../assets/Filter.png';
 import clockIcon from '../assets/TimeCircle.png';
-import locIcon from '../assets/LocationIcon.png';
+import locIcon from '../assets/locCompas.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type HistoryScreenProps = {
