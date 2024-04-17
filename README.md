@@ -6,8 +6,9 @@ With Hoop, users can easily search for available car spots based on their locati
 
 ### Dependencies
 
-## Hoop App [![Code Climate](https://img.shields.io/codeclimate/github/{munezero}/{https://github.com/munezeromicha/Hoop-App-TP}?label=Code%20Quality)](https://codeclimate.com/github/{munezeromicha}/{https://github.com/munezeromicha/Hoop-App-TP}) [![Testing](https://img.shields.io/badge/tests-passing-brightgreen)](link_to_your_testing_page) [![Expo](https://img.shields.io/badge/Expo-Ready-blue)](https://expo.io/)
-**React native**
+ [![Expo](https://img.shields.io/badge/Expo-Ready-blue)](https://expo.io/)
+[![React Native](https://img.shields.io/badge/React%20Native-Ready-blue)](https://reactnative.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)](https://www.typescriptlang.org/)
 
 ### Getting Started
 
