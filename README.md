@@ -8,7 +8,7 @@ With Hoop, users can easily search for available car spots based on their locati
 
  [![Expo](https://img.shields.io/badge/Expo-Ready-blue)](https://expo.io/)
 [![React Native](https://img.shields.io/badge/React%20Native-Ready-blue)](https://reactnative.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue?logo=typescript)](https://www.typescriptlang.org/)
 
 ### Getting Started
 
