@@ -16,9 +16,10 @@ import Track from "./screens/TrackingPark";
 import Edit from "./screens/EditProfile";
 import Upgrade from "./screens/UpgradePro";
 import ShowMap from "./screens/ShowMap";
+import ChooseSpace from "./screens/ChooseSpace";
 import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
-import DetailParking from "./screens/detailParking";
+import DetailParking from "./screens/DetailParking";
 import Forget from "./screens/ForgetPassword";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -51,6 +52,7 @@ export default function App() {
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
           <Stack.Screen name="Track" component={Track} options={{headerShown: false}}/>
           <Stack.Screen name="Edit" component={Edit} options={{headerShown: false}}/>
+          <Stack.Screen name="ChooseSpace" component={ChooseSpace} options={{headerShown: false}}/>
           <Stack.Screen name="ShowMap" component={ShowMap} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
           <Stack.Screen name="Request" component={Request} options={{headerShown: false}}/>

@@ -1,7 +1,12 @@
 import { StyleSheet, Text, View,ImageBackground,Image,TouchableOpacity } from 'react-native'
 import React from 'react'
+import { StackNavigationProp } from '@react-navigation/stack'
 
-const TrackingPark = () => {
+type TrackingScreenProps = {
+    navigation: StackNavigationProp <any, 'TrackScreen'>
+}
+
+const TrackingPark: React.FC<TrackingScreenProps> = ({navigation}) => {
   return (
     <View style={styles.trackBlock}>
       <ImageBackground
@@ -41,7 +46,7 @@ const TrackingPark = () => {
             </View>
 
             <View>
-                <TouchableOpacity style={styles.startBtn}>
+                <TouchableOpacity style={styles.startBtn} onPress={()=> navigation.navigate('ChooseSpace')}>
                     <Image style={{marginLeft: 20}} source={require('../assets/whiteEx.png')} />
                     <Text style={{fontSize: 16,color: '#FFFFFF',textAlign: 'center'}}> Start Now</Text>
                 </TouchableOpacity>
