@@ -9,18 +9,20 @@ import Home from "./screens/Home";
 import OTP from "./screens/OTP";
 import Confirm from "./screens/Confirm";
 import Request from "./screens/RequestCode";
-import Explore from "./screens/EditProfile";
+import Explore from "./screens/Explore";
 import History from "./screens/History";
 import Profile from "./screens/Profile";
+import Track from "./screens/TrackingPark";
 import Edit from "./screens/EditProfile";
 import Upgrade from "./screens/UpgradePro";
+import ShowMap from "./screens/ShowMap";
 import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
-import DetailParkingOne from "./screens/ParkingScreenOne";
+import DetailParking from "./screens/detailParking";
 import Forget from "./screens/ForgetPassword";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React = require("react");
+import React from "react";
 
 
 const Stack = createNativeStackNavigator();
@@ -47,13 +49,15 @@ export default function App() {
           <Stack.Screen name="Explore" component={Explore} options={{headerShown: false}}/>
           <Stack.Screen name="History" component={History} options={{headerShown: false}}/>
           <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+          <Stack.Screen name="Track" component={Track} options={{headerShown: false}}/>
           <Stack.Screen name="Edit" component={Edit} options={{headerShown: false}}/>
+          <Stack.Screen name="ShowMap" component={ShowMap} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
           <Stack.Screen name="Request" component={Request} options={{headerShown: false}}/>
           <Stack.Screen name="Forget" component={Forget} options={{headerShown: false}}/>
           <Stack.Screen name="DetailHistory" component={DetailHistory} options={{headerShown: false}}/>
           <Stack.Screen name="Notifications" component={Notifications} options={{headerShown: false}}/>
-          <Stack.Screen name="DetailParkingOne" component={DetailParkingOne} options={{headerShown: false}}/>
+          <Stack.Screen name="DetailParking" component={DetailParking} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

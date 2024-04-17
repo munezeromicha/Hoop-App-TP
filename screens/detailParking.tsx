@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Alert, Pressable } from 'react-native'
-import back from '../assets/Group4.png';
-import Location from '../assets/Location.png';
 import { MaterialIcons } from '@expo/vector-icons';
-import GradientText from '../componets/gradientText';
+// import GradientText from '../componets/gradientText';
 
 
 
-const DetailsParking: React.FC<any> = ({ navigation }) => {
+const DetailParking: React.FC<any> = ({ navigation }) => {
     const [distance, setDistance] = useState<number | null>(null);
 
 
@@ -16,12 +14,12 @@ const DetailsParking: React.FC<any> = ({ navigation }) => {
             <View style={styles.Main}>
                 <View style={styles.back}>
                     <Pressable onPress={() => { navigation.navigate('phone') }}>
-                        <Image source={back} />
+                        <Image source={require('../assets/Group4.png')} />
                     </Pressable>
                     <Text style={styles.detail}>Details</Text>
                 </View>
                 <View style={styles.img1}>
-                    <Image source={Location} />
+                    <Image source={ require('../assets/Location.png')} />
                     <Text style={styles.mall}>Graha Mall</Text>
                     <Text style={styles.street}>123 Dhaka Street</Text>
                 </View>
@@ -39,14 +37,14 @@ const DetailsParking: React.FC<any> = ({ navigation }) => {
                 </View>
                 <View >
                     <Text>Information</Text>
-                    <GradientText colors={['#FF5733', '#FFC300']} />
+                    {/* <GradientText colors={['#FF5733', '#FFC300']} /> */}
                 </View>
             </View>
         </>
     )
 };
 
-export default DetailsParking;
+export default DetailParking;
 
 
 const styles = StyleSheet.create({
