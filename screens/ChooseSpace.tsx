@@ -24,7 +24,7 @@ const ChooseSpace: React.FC<SpaceScreenProps> = ({navigation}) => {
                 <Image source={require('../assets/CarSpace.png')} />
             </View>
             
-            <TouchableOpacity style={{width: 311, height: 60, backgroundColor: '#130F26',borderRadius: 15,justifyContent: 'center',alignItems: 'center'}}>
+            <TouchableOpacity style={{width: 311, height: 60, backgroundColor: '#130F26',borderRadius: 15,justifyContent: 'center',alignItems: 'center'}} onPress={()=> navigation.navigate('Book')}>
                 <Text style={{color: '#FFFFFF', fontSize: 20}}>Book Space</Text>
             </TouchableOpacity>
     </View>
