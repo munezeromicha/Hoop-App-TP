@@ -12,10 +12,13 @@ With Hoop, users can easily search for available car spots based on their locati
 
 ### Getting Started
 
-<code>clone: https://github.com/munezeromicha/Hoop-App-TP.git</code>
+1.Clone this repository to your local machine. 
+  This is the link you use to clone the repository: <code>https://github.com/munezeromicha/Hoop-App-TP.git</code>
+2.Navigate to the project directory.
+3.Run npm install to install all dependencies required.
 
 ### Run The Service
-
+To start the project you use the script below:
 <code>npm start</code>
 
 Key Features:
