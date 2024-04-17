@@ -21,7 +21,7 @@ With Hoop, users can easily search for available car spots based on their locati
 
 ### Run The Service
 To start the project you use the script below:</br>
-<code>npm start</code> </br>
+In general who want to use both device: <code>npm start</code> </br>
 For androide: <code>expo start --android</code> </br>
 For iOS: <code>expo start --ios</code>
 
