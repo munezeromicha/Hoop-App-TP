@@ -1,150 +1,442 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import { useState } from "react";
-import AppIntroSlider from "react-native-app-intro-slider";
+import React, { useState } from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Animated,
+  Pressable,
+  Image
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import ArrowLeft from "../assets/ArrowLeft.png";
 
-type SliderScreenProps = {
-  navigation: StackNavigationProp<any, "SliderScreen">;
+type UpgradeProps = {
+  navigation: StackNavigationProp<any, 'UpgradeScreen'>
+}
+
+type Props = {
+  value: boolean;
+  onChange: (value: boolean) => void;
 };
 
-const swipe = [
-  {
-    id: 1,
-    title: "Get all the facilities by upgrading your account",
-    description: "Get all the facilities by upgrading your account",
-  },
-  {
-    id: 2,
-    title: "Get all the facilities by upgrading your account",
-    description: "Get all the facilities by upgrading your account",
-  },
-  {
-    id: 3,
-    title: "Get all the facilities by upgrading your account",
-    description: "Get all the facilities by upgrading your account",
-  },
-];
+const Upgrade: React.FC<Props> = ({ value, onChange, navigation }) => {
+  const [isSwiped, setIsSwiped] = useState(false);
+  const translateX = new Animated.Value(0);
 
-const Upgrade: React.FC<SliderScreenProps> = ({ navigation }) => {
-  const [showHomePage, setShowHomePage] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
 
-  const buttonLabel = (label) => {
-    return (
-      <View
-        style={{
-          marginTop: -460,
-          marginLeft: 325,
-        }}
-      >
-        <Text
-          style={{
-            color: "#2D2D2D",
-            fontSize: 16,
-          }}
-        >
-          {label}
-        </Text>
-      </View>
-    );
+  const toggleCheck = () => {
+    setChecked(!checked);
+  };
+  const toggleCheck1 = () => {
+    setChecked(!checked);
+  };
+  const toggleCheck2 = () => {
+    setChecked(!checked);
   };
 
-  if (!showHomePage) {
-    return (
-      <View style={styles.container}>
-          <View style={styles.insideOne}>
-            <TouchableOpacity
-              style={styles.returnBtn}
-              onPress={() => navigation.navigate("Profile")}
-            >
-              <Image style={{ width: 24, height: 24 }} source={ArrowLeft} />
-            </TouchableOpacity>
-            <Text style={styles.title}>Upgrade</Text>
-          </View>
+  return (
+    <View style={styles.container}>
 
-        <AppIntroSlider
-          data={swipe}
-          renderItem={({ item }) => {
-            return (
-              <View style={styles.swipePart}>
-                <Text style={styles.titleOne}>{item.title}</Text>
-                <View style={styles.boxOne}>
-                  <Text style={styles.description}>{item.description}</Text>
-                </View>
-              </View>
-            );
-          }}
-          activeDotStyle={{
-            backgroundColor: "#F43939",
-            display: "none",
-          }}
-          dotStyle={{
-            display: "none",
-            backgroundColor: "#c4c4cb",
-          }}
-          showSkipButton={false}
-          showNextButton={false}
-          showDoneButton={false}
-          renderSkipButton={() => buttonLabel("Skip")}
-        />
-      </View>
-    );
-  }
+<View style={styles.back}>
+             <Pressable onPress={()=> navigation.navigate('Profile')}>
+                 <Image source={require('../assets/Group4.png')} />
+             </Pressable >
+                     <Text style={styles.upgrade}>Upgrade</Text>
+             </View>
+
+             <View style={styles.text}>
+                 <Text style={styles.text1}>
+                     Get all the facilities {'\n'}
+                     by upgrading your {'\n'}
+                     account
+                 </Text>
+             </View>
+
+             <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}
+      >
+        <View style={styles.middle}>
+          <Text style={styles.pro}>Pro</Text>
+
+          <View>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Unlimited features</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Discounts every reservation</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.middle}>
+          <Text style={styles.pro}>Pro</Text>
+
+          <View>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked1 ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked1 ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Unlimited features</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Discounts every reservation</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.middle}>
+          <Text style={styles.pro}>Pro</Text>
+
+          <View>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Unlimited features</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Discounts every reservation</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.middle}>
+          <Text style={styles.pro}>Pro</Text>
+
+          <View>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Unlimited features</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Discounts every reservation</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.middle}>
+          <Text style={styles.pro}>Pro</Text>
+
+          <View>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Unlimited features</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>Discounts every reservation</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleCheck} style={styles.item}>
+              <MaterialIcons
+                name={checked ? "check-box" : "check-box-outline-blank"}
+                size={24}
+                color={checked ? "red" : "black"}
+              />
+              <Text style={[styles.label]}>All include</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+
+      </ScrollView>
+             {/* </View> */}
+
+      <Pressable style={styles.pay12}>
+        <Text style={styles.pay11}>Choose a Plan</Text>
+      </Pressable>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-  },
-  insideOne: {
-    flexDirection: "row",
-    gap: 80,
-    marginLeft: '-27%'
-  },
-  returnBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 44,
-    height: 44,
-    backgroundColor: "#EAEAF3",
-    borderRadius: 10,
-  },
-  boxOne: {
-    width: 257,
-    height: 372,
-    borderRadius: 15,
-    backgroundColor: "#FFFFFF",
-  },
   container: {
     flex: 1,
-    alignItems: "center",
-    // justifyContent: "center",
-    gap: 70,
-    marginTop: "25%",
-  },
-  swipePart: {
-    // marginVertical: 2,
     justifyContent: "center",
     alignItems: "center",
-    gap: 20,
-    borderWidth: 0.5,
   },
-  titleOne: {
+  scrollView: {
+    width: "100%",
+    height: 100,
+    
+  },
+  scrollViewContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  body: {
+    padding: 0,
+    margin: 0,
+  },
+  Main: {
+    backgroundColor: "rgba(244, 244, 250, 1)",
+    height: "100%",
+    width: "100%",
+  },
+  back: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "20%",
+    alignItems: "center",
+    padding: 30,
+  },
+  upgrade: {
+    fontSize: 20,
+    fontWeight: "500",
+    paddingLeft: 60,
+    color: "#2D2D2D",
+  },
+  text: {
+    height: "13%",
+  },
+  text1: {
+    textAlign: "center",
     fontSize: 24,
-    color: "#2D2D2D",
-    textAlign: "center",
-    width: 229,
-    borderWidth: 0.5,
   },
-  description: {
-    // marginTop: 10,
-    fontSize: 16,
-    color: "#2D2D2D",
-    width: 250,
+  middle: {
     alignItems: "center",
+    backgroundColor: "#fff",
+    height: "80%",
+    width: "20%",
+    alignSelf: "center",
+    margin: 15,
+    padding: 15,
+    borderRadius: 20,
+    gap: 23
+  },
+  item: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  pro: {
+    fontSize: 20,
+    padding: 20,
+  },
+  label: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: "rgba(0, 0, 0, 1)",
+  },
+  checkedLabel: {
+    textDecorationLine: "line-through",
+  },
+  pay12: {
+    backgroundColor: "#130F26",
+    width: "90%",
+    height: "7%",
+    alignSelf: "center",
+    borderRadius: 15,
+    alignItems: "center",
+    marginBottom: 30,
     justifyContent: "center",
-    textAlign: "center",
+  },
+  pay11: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "300",
   },
 });
 
