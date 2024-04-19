@@ -342,7 +342,7 @@ const Upgrade: React.FC<Props> = ({ value, onChange, navigation }) => {
       </ScrollView>
              {/* </View> */}
 
-      <Pressable style={styles.pay12}>
+      <Pressable style={styles.pay12} onPress={() => navigation.navigate('ChoosePlan')}>
         <Text style={styles.pay11}>Choose a Plan</Text>
       </Pressable>
     </View>
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
   pay11: {
     color: "#fff",
     fontSize: 20,
-    fontWeight: "300",
+    fontWeight: "600",
   },
 });
 
