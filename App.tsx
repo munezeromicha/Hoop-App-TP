@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import  { useEffect, useState } from "react";
-import Slider from "./screens/slider";
-import Login from "./screens/LoginScreen";
+// import LoginEmail from "./screens/Login with email";
 import Book from "./screens/Book";
-import Phone from "./screens/LoginWithPhone";
+import Phone from "./screens/Login with phone";
 import Register from "./screens/Register";
 import Home from "./screens/Home";
 import OTP from "./screens/OTP";
+import Slider from "./screens/OnBoarding";
 import Confirm from "./screens/Confirm";
 import Request from "./screens/RequestCode";
 import Explore from "./screens/Explore";
@@ -45,8 +45,8 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name=' ' component={Slider}  options={{headerShown: false}}/>
-          <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+          <Stack.Screen name="Slider" component={Slider} options={{headerShown: false}}/>
+          {/* <Stack.Screen name="Login" component={LoginEmail} options={{headerShown: false}}/> */}
           <Stack.Screen name="Book" component={Book} options={{headerShown: false}}/>
           <Stack.Screen name="Phone" component={Phone} options={{headerShown: false}}/>
           <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>

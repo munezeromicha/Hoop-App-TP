@@ -1,15 +1,34 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
 import { useState } from 'react';
-import MaskGroup from '../assets/MaskGroup.png';
+import React from 'react';
 import { Ionicons } from '@expo/vector-icons'; 
 import { StackNavigationProp } from '@react-navigation/stack';
-import React = require('react');
+import { Client, Account, ID } from 'appwrite';
+import Toast from 'react-native-toast-message';
+
+const client = new Client(); 
+
+client
+   .setEndpoint('https://cloud.appwrite.io/v1')
+   .setProject('6626bd912e893160ae48')
+
+const account = new Account(client);
+interface User{}
 
 type RegisterScreenProps = {
   navigation: StackNavigationProp<any, 'RegisterScreen'>;
 };
 
 const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
+
+    const showToasts = () => {
+    Toast.show({
+    type:'success',
+    text1:'Logged In'
+  })
+  }
+
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null)
   const [authentication, setAuthentication] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -35,17 +54,20 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit = () => {
-    if (authentication && email && phoneNumber && password) {
-      Alert.alert('Account Created Successfully!');
-    } else {
-      Alert.alert('Failed', 'Please fill in all fields');
+  const handleSubmit = async() =>{
+    if( email && password && authentication && phoneNumber){
+      await account.create(ID.unique(), email, password ,authentication);
+      setLoggedInUser(await account.get());
+      showToasts();
+      navigation.navigate('Login');
+    }else{
+      Alert.alert('Failed', 'Please fill in all fields')
     }
-  };
+  }
   return (
     <>
       <View style={styles.Main}>
-        <Image style={styles.image} source={MaskGroup} />
+        <Image style={styles.image} source={require('../assets/MaskGroup.png')} />
         <Text style={styles.glad}>Let's start!!</Text>
         <View style={styles.container}>
           <View style={styles.body1}>
@@ -112,7 +134,6 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     </>
   )
 }
-
 export default Register;
 
 const styles = StyleSheet.create({
@@ -203,4 +224,12 @@ const styles = StyleSheet.create({
     color: '#F43939',
   },
 })
+
+function Login(email: string, password: string){
+  throw new Error("Function not implemented")
+}
+
+function setLoggedInUser() {
+  throw new Error('Function not implemented.');
+}
 
