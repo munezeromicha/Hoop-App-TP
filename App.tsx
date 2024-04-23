@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import  { useEffect, useState } from "react";
-// import LoginEmail from "./screens/Login with email";
+import LoginEmail from "./screens/Login with email";
 import Book from "./screens/Book";
 import Phone from "./screens/Login with phone";
 import Register from "./screens/Register";
@@ -46,7 +46,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Slider" component={Slider} options={{headerShown: false}}/>
-          {/* <Stack.Screen name="Login" component={LoginEmail} options={{headerShown: false}}/> */}
+          <Stack.Screen name="Login" component={LoginEmail} options={{headerShown: false}}/>
           <Stack.Screen name="Book" component={Book} options={{headerShown: false}}/>
           <Stack.Screen name="Phone" component={Phone} options={{headerShown: false}}/>
           <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
