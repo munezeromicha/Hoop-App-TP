@@ -118,9 +118,8 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
             Forgot password?
             <Text
               style={styles.lastText1}
-              onPress={() => navigation.navigate("")}
+              onPress={() => navigation.navigate("Forget")}
             >
-              {" "}
               Retrieve
             </Text>
           </Text>

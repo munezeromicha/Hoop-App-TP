@@ -55,7 +55,10 @@ const handleSubmit = async () => {
       await login(email, password);
       setLoggedInUser(await account.get());
       showToasts();
-      navigation.navigate("Login");
+      setTimeout(()=> {
+        navigation.navigate("Login");
+      }, 3000);
+      
     } catch (error) {
       console.error(error);
       Alert.alert("Failed", "An error occurred while registering.");
@@ -152,7 +155,6 @@ async function login(email: string, password: string) {
                 navigation.navigate("Login");
               }}
             >
-              {" "}
               Sign In
             </Text>
           </Text>
@@ -170,7 +172,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   body1: {
-    paddingTop: 20,
+    // paddingTop: 20,
     height: "40%",
   },
   Main: {
@@ -232,7 +234,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#130F26",
     padding: 20,
     borderRadius: 20,
-    margin: 20,
+    marginBottom: '-10%',
     textAlign: "center",
   },
   buttonText: {
@@ -243,8 +245,9 @@ const styles = StyleSheet.create({
   bottomText: {
     flex: 5,
     alignSelf: "center",
-    paddingTop: 10,
+    // paddingTop: 10,
     color: "#rgba(45, 45, 45, 0.5)",
+    marginTop: '9%'
   },
   lastText: {
     fontWeight: "500",

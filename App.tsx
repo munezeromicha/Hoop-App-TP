@@ -27,7 +27,6 @@ import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
 import DetailParking from "./screens/detailParking";
 import Forget from "./screens/ForgetPassword";
-import Write from './screens/AppWrite';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from "react";
@@ -52,7 +51,6 @@ export default function App() {
           <Stack.Screen name="Book" component={Book} options={{headerShown: false}}/>
           <Stack.Screen name="Phone" component={Phone} options={{headerShown: false}}/>
           <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
-          <Stack.Screen name="Write" component={Write} options={{headerShown: false}}/>
           <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
           <Stack.Screen name="OTP" component={OTP} options={{headerShown: false}}/>
           <Stack.Screen name="Confirm" component={Confirm} options={{headerShown: false}}/>

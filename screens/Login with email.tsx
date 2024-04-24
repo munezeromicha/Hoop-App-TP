@@ -2,7 +2,8 @@ import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, TouchableWit
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons'; 
 import { Client, Account, ID } from "react-native-appwrite/src";
-import ToastManager, { Toast } from 'toastify-react-native'
+import ToastManager, { Toast } from 'toastify-react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 let client = new Client();
 client
@@ -10,11 +11,13 @@ client
   .setProject('662658e8596ec1427342')
 
 let account = new Account(client);
-
-const LoginEmail: React.FC<any> = ({navigation}) => {
+type LoginScreenProps = {
+  navigation: StackNavigationProp<any, 'LoginScreen'>
+}
+const LoginEmail: React.FC<LoginScreenProps> = ({navigation}) => {
 
   const showToasts = () => {
-    Toast.success('Logged In');
+    Toast.success('Logged In')
   }
 
   const [email, setEmail] = useState('');
@@ -36,13 +39,16 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
 
   const handleSubmit= async() => {
     if ( email  && password) {
-      // async function login(email: string, password: string) {
         await account.createEmailSession(email, password);
         setLoggedInUser(await account.get());
-      // }
-      // Alert.alert('logged in Successfully!');
-      showToasts();
-      navigation.navigate("Home");
+
+        showToasts();
+
+
+      setTimeout(() => {
+        navigation.navigate("Home");
+      }, 3000);
+      
     } else {
       Alert.alert('Failed', 'Please fill in all fields');
     }
@@ -82,7 +88,7 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
 
       <View>
       <Text style={styles.bottomText1}>Forgot password?
-        <Text style={styles.lastText1} onPress={() => {navigation.navigate('forget')}}> Retrieve</Text>
+        <Text style={styles.lastText1} onPress={() => {navigation.navigate('Forget')}}> Retrieve</Text>
       </Text>
       </View>
 
