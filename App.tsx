@@ -2,30 +2,32 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import  { useEffect, useState } from "react";
 import Slider from "./screens/slider";
-import Login from "./screens/LoginScreen";
+import Login from "./screens/Login with email";
 import Book from "./screens/Book";
 import Phone from "./screens/LoginWithPhone";
 import Register from "./screens/Register";
-import Home from "./screens/Home";
+import Home from "./screens/home";
 import OTP from "./screens/OTP";
 import Confirm from "./screens/Confirm";
 import Request from "./screens/RequestCode";
-import Explore from "./screens/Explore";
+import Explore from "./screens/explore";
 import History from "./screens/History";
 import Profile from "./screens/Profile";
 import Track from "./screens/TrackingPark";
 import Edit from "./screens/EditProfile";
-import BookDetail from "./screens/BookDetail";
-import Payment from "./screens/Payment";
-import PaymentSuccess from "./screens/PaymentSuccess";
-import PaymentDetails from "./screens/PaymentDetails";
+import BookDetail from "./screens/bookDetail";
+import Payment from "./screens/payment";
+import PaymentSuccess from "./screens/paymentSuccess";
+import PaymentDetails from "./screens/paymentDetails";
 import Upgrade from "./screens/UpgradePro";
 import ShowMap from "./screens/ShowMap";
 import ChooseSpace from "./screens/ChooseSpace";
+import ChoosePlan from "./screens/choosePlanPro";
 import DetailHistory from "./screens/DetailHistory";
 import Notifications from "./screens/Notifications";
-import DetailParking from "./screens/DetailParking";
+import DetailParking from "./screens/detailParking";
 import Forget from "./screens/ForgetPassword";
+import Write from './screens/AppWrite';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from "react";
@@ -50,6 +52,7 @@ export default function App() {
           <Stack.Screen name="Book" component={Book} options={{headerShown: false}}/>
           <Stack.Screen name="Phone" component={Phone} options={{headerShown: false}}/>
           <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
+          <Stack.Screen name="Write" component={Write} options={{headerShown: false}}/>
           <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
           <Stack.Screen name="OTP" component={OTP} options={{headerShown: false}}/>
           <Stack.Screen name="Confirm" component={Confirm} options={{headerShown: false}}/>
@@ -63,6 +66,7 @@ export default function App() {
           <Stack.Screen name="PaymentDetails" component={PaymentDetails} options={{headerShown: false}}/>
           <Stack.Screen name="BookDetail" component={BookDetail} options={{headerShown: false}}/>
           <Stack.Screen name="ChooseSpace" component={ChooseSpace} options={{headerShown: false}}/>
+          <Stack.Screen name="ChoosePlan" component={ChoosePlan} options={{headerShown: false}}/>
           <Stack.Screen name="ShowMap" component={ShowMap} options={{headerShown: false}}/>
           <Stack.Screen name="Upgrade" component={Upgrade} options={{headerShown: false}}/>
           <Stack.Screen name="Request" component={Request} options={{headerShown: false}}/>

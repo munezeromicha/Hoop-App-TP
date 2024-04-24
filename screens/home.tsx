@@ -1,34 +1,43 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  TouchableWithoutFeedback,
-  Alert,
-} from "react-native";
-import React, { useState } from "react";
-import MaskGroup from "../assets/MaskGroup.png";
-import Search from "../assets/Search.png";
-import Notification from "../assets/Notification.png";
-import Car from "../assets/Car.png";
-import Bike from "../assets/Bike.png";
-import Bus from "../assets/Bus.png";
-import Van from "../assets/Van.png";
-import Rectangle1 from "../assets/Rectangle1.png";
-import Rectangle2 from "../assets/Rectangle2.png";
+import {StyleSheet,View,Text,Image,TouchableOpacity,TextInput,TouchableWithoutFeedback,Alert,ScrollView} from "react-native";
+import React, { useState, useContext, createContext } from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { Client, Account, ID } from "react-native-appwrite/src";
 
+
+let client = new Client();
+client
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('662658e8596ec1427342')
+
+let account = new Account(client);
 type HomeScreenProps = {
   navigation: StackNavigationProp<any, "HomeScreen">;
 };
 
+
+
 const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
+  const [loggedInUser, setLoggedInUser] = useState("");
+
+
+  async function login(email: string, password: string) {
+    await account.createEmailSession(email, password);
+    setLoggedInUser(await account.get());
+  }
+
+  async function register(email: string, password: string, name: string) {
+    await account.create(ID.unique(), email, password, name);
+    await login(email, password);
+    setLoggedInUser(await account.get());
+  }
+
   return (
     <>
       <View style={styles.Main}>
-        <Image style={styles.image} source={MaskGroup} />
+        <Image
+          style={styles.image}
+          source={require("../assets/MaskGroup.png")}
+        />
         <View style={styles.TextGroup}>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Text style={styles.glad}>Hola, Diane👋🏻</Text>
@@ -39,12 +48,15 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
             onPress={() => navigation.navigate("Notifications")}
           >
             <Text>
-              <Image source={Notification} />
+              <Image source={require("../assets/Notification.png")} />
             </Text>
           </TouchableOpacity>
 
           <View style={styles.searchContainer}>
-            <Image source={Search} style={styles.icon} />
+            <Image
+              source={require("../assets/Search.png")}
+              style={styles.icon}
+            />
             <TextInput
               placeholder="Search"
               style={styles.holderInput}
@@ -58,19 +70,19 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
             <Text style={styles.categories}>Categories</Text>
             <View style={styles.boxes}>
               <View style={styles.boxOne}>
-                <Image source={Car} />
+                <Image source={require("../assets/Car.png")} />
                 <Text>Car</Text>
               </View>
               <View style={styles.boxOne}>
-                <Image source={Bike} />
+                <Image source={require("../assets/Bike.png")} />
                 <Text>Bike</Text>
               </View>
               <View style={styles.boxOne}>
-                <Image source={Bus} />
+                <Image source={require("../assets/Bus.png")} />
                 <Text>Bus</Text>
               </View>
               <View style={styles.boxOne}>
-                <Image source={Van} />
+                <Image source={require("../assets/Van.png")} />
                 <Text>Van</Text>
               </View>
             </View>
@@ -79,12 +91,13 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
             <View style={styles.groupTwo}>
               <Text style={styles.textPark}>Nearst Parking Spaces</Text>
 
+
               <View style={styles.boxTwo}>
                 <TouchableOpacity
                   onPress={() => navigation.navigate("Explore")}
                 >
                   <View style={styles.insideBox}>
-                    <Image source={Rectangle1} />
+                    <Image source={require("../assets/Rectangle1.png")} />
 
                     <View style={styles.twoText}>
                       <View>
@@ -107,9 +120,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               </View>
 
               <View style={styles.boxTwo}>
-                <TouchableOpacity onPress={() =>navigation.navigate('Track')}>
+                <TouchableOpacity onPress={() => navigation.navigate("Track")}>
                   <View style={styles.insideBox}>
-                    <Image source={Rectangle2} />
+                    <Image source={require("../assets/Rectangle2.png")} />
 
                     <View style={styles.twoText}>
                       <View>
@@ -130,6 +143,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                   </View>
                 </TouchableOpacity>
               </View>
+
+
+
             </View>
           </View>
         </View>

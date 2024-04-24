@@ -8,21 +8,20 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from "react-native";
-import { useState } from "react";
-import MaskGroup from "../assets/MaskGroup.png";
-import ProfilePic from "../assets/EllipsePic.png";
+import { useState, useContext, createContext  } from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Logout from "../assets/Logout.png";
-import Profile from "../assets/Profile.png";
-import Discount from "../assets/Discount.png";
-import Document from "../assets/Document.png";
-import Question from "../assets/questionCircle.png";
-import Setting from "../assets/Setting.png";
-import Hphone from "../assets/headphone.png";
-import RightArrow from "../assets/RightArrow.png";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from '@react-navigation/native';
-import React = require("react");
+import React from 'react';
+import { Client, Account, ID } from "react-native-appwrite/src";
+
+
+let client = new Client();
+client
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('662658e8596ec1427342')
+
+let account = new Account(client);
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<any, "HomeScreen">;
@@ -48,9 +47,22 @@ const Settings = [
   { label: "Change Password", value: "1" },
 
 ];
+// const UserContext = createContext();
+// export function useUser(){
+//   return useContext(UserContext);
+// }
+
 
 const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
+  
   const [value, setValue] = useState<string | null>(null);
+  const [user, setUser] = useState(null);
+
+  async function logout(){
+    await account.deleteSession("current");
+    setUser(null);
+    navigation.navigate('Login');
+  }
 
   const navigations = useNavigation();
 
@@ -67,20 +79,20 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
   return (
     <>
       <View style={styles.Main}>
-        <Image style={styles.image} source={MaskGroup} />
+        <Image style={styles.image} source={require("../assets/MaskGroup.png")} />
         <View style={styles.TextGroup}>
           <Text style={styles.glad}>Profile</Text>
 
           <View style={styles.overProfile}>
             <View style={styles.topProfile}>
-              <Image style={styles.ProfilePicture} source={ProfilePic} />
+              <Image style={styles.ProfilePicture} source={require("../assets/EllipsePic.png")} />
               <View style={styles.insideProfile}>
                 <Text style={styles.welcome}>Welcome</Text>
                 <Text style={styles.name}>Diane</Text>
               </View>
 
-              <TouchableOpacity style={styles.LogoutBtn}>
-                <Image source={Logout} />
+              <TouchableOpacity style={styles.LogoutBtn} onPress={logout}>
+                <Image source={require("../assets/Logout.png")} />
               </TouchableOpacity>
             </View>
           </View>
@@ -107,9 +119,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 handleOnPressOne(item);
               }}
               renderLeftIcon={() => (
-                <Image source={Profile} style={styles.icon} />
+                <Image source={require("../assets/Profile.png")} style={styles.icon} />
               )}
-              renderRightIcon={() => <Image source={RightArrow} />}
+              renderRightIcon={() => <Image source={require("../assets/RightArrow.png")} />}
             />
 
             <Dropdown
@@ -131,9 +143,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 handleOnPressTwo(item);
               }}
               renderLeftIcon={() => (
-                <Image source={Discount} style={styles.icon} />
+                <Image source={require("../assets/Discount.png")} style={styles.icon} />
               )}
-              renderRightIcon={() => <Image source={RightArrow} />}
+              renderRightIcon={() => <Image source={require("../assets/RightArrow.png")} />}
             />
 
             <Dropdown
@@ -154,9 +166,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 setValue(item.value);
               }}
               renderLeftIcon={() => (
-                <Image source={Document} style={styles.icon} />
+                <Image source={require("../assets/Document.png")} style={styles.icon} />
               )}
-              renderRightIcon={() => <Image source={RightArrow} />}
+              renderRightIcon={() => <Image source={require("../assets/RightArrow.png")} />}
             />
 
             <Dropdown
@@ -177,9 +189,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 setValue(item.value);
               }}
               renderLeftIcon={() => (
-                <Image source={Question} style={styles.icon} />
+                <Image source={require("../assets/questionCircle.png")} style={styles.icon} />
               )}
-              renderRightIcon={() => <Image source={RightArrow} />}
+              renderRightIcon={() => <Image source={require("../assets/RightArrow.png")} />}
             />
 
             <Dropdown
@@ -200,16 +212,16 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 setValue(item.value);
               }}
               renderLeftIcon={() => (
-                <Image source={Setting} style={styles.icon} />
+                <Image source={require("../assets/Setting.png")} style={styles.icon} />
               )}
-              renderRightIcon={() => <Image source={RightArrow} />}
+              renderRightIcon={() => <Image source={require("../assets/RightArrow.png")} />}
             />
           </View>
 
           <View style={styles.lastBlock}>
             <TouchableOpacity style={styles.helpBtn}>
               <Text style={styles.help}>
-                <Image source={Hphone} />
+                <Image source={require("../assets/headphone.png")} />
                 How can we help you
               </Text>
             </TouchableOpacity>

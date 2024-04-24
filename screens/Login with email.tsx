@@ -1,13 +1,26 @@
 import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Alert } from 'react-native'
 import React, { useState } from 'react';
-import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
+import { Client, Account, ID } from "react-native-appwrite/src";
+import ToastManager, { Toast } from 'toastify-react-native'
 
+let client = new Client();
+client
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('662658e8596ec1427342')
+
+let account = new Account(client);
 
 const LoginEmail: React.FC<any> = ({navigation}) => {
+
+  const showToasts = () => {
+    Toast.success('Logged In');
+  }
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -21,9 +34,15 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit= () => {
+  const handleSubmit= async() => {
     if ( email  && password) {
-      Alert.alert('logged in Successfully!');
+      // async function login(email: string, password: string) {
+        await account.createEmailSession(email, password);
+        setLoggedInUser(await account.get());
+      // }
+      // Alert.alert('logged in Successfully!');
+      showToasts();
+      navigation.navigate("Home");
     } else {
       Alert.alert('Failed', 'Please fill in all fields');
     }
@@ -31,7 +50,8 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
   return (
     <>
     <View style={styles.Main}>
-          <Image style={styles.image} source={MaskGroup}/>
+    <ToastManager />
+          <Image style={styles.image} source={require('../assets/MaskGroup.png')}/>
         <Text style={styles.glad}>Glad to see you!!</Text>
         <View style={styles.container}>
           <View style={styles.body1}>
@@ -43,7 +63,7 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
           onChangeText={handleEmailChange}
           placeholderTextColor= "rgba(45, 45, 45, 0.5)"
           />
-          </View>
+        </View>
         <View style={styles.inputs}>
         <View style={styles.passwordInputContainer}>
             <TextInput
@@ -59,10 +79,16 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
             </TouchableWithoutFeedback>
           </View>
         </View>
-      </View>
-          <Text style={styles.bottomText1}>Forgot password?
+
+      <View>
+      <Text style={styles.bottomText1}>Forgot password?
         <Text style={styles.lastText1} onPress={() => {navigation.navigate('forget')}}> Retrieve</Text>
       </Text>
+      </View>
+
+      </View>
+
+
       <View style={styles.btn}>
           <TouchableOpacity
            style={styles.button}
@@ -71,7 +97,7 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
           </TouchableOpacity>
       </View>
           <Text style={styles.bottomText}>Don't have an account?
-        <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Sign Up</Text>
+        <Text style={styles.lastText} onPress={() => {navigation.navigate('Register')}}> Sign Up</Text>
       </Text>
        </View> 
     </View>
@@ -89,6 +115,7 @@ const styles = StyleSheet.create({
   Main:{
     backgroundColor: '#130F26',
     height: '100%',
+    gap: 30
   },
   body1:{
     height: '18%',
@@ -108,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4FA',
     borderTopLeftRadius: 38,
     borderTopRightRadius: 38,
-    paddingTop: 30,
+    paddingTop:30,
     height: '100%',
   },
   inputs: {
@@ -181,12 +208,12 @@ lastText: {
 bottomText1:{
   textAlign: 'right',
   fontWeight: '500',
-  paddingRight: 10,
+  marginRight: '2%',
   color: 'rgba(45, 45, 45, 0.5)',
+  marginTop: 10
 },
 lastText1: {
   fontSize: 14,
   color: '#F43939',
 },
 })
-
