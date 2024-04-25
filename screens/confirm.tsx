@@ -1,14 +1,29 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import Group2 from "../assets/Group2.png";
 // import { Timestamp } from "mongodb";
+import { Linking } from 'react-native';
 
 const Confirm: React.FC<any> = ({ navigation }) => {
+  
+  const handleButtonPress = async () => {
+    const url = 'https://gmail@gmail.com';
+    try {
+      const isSupported = await Linking.canOpenURL(url);
+      if (isSupported) {
+        await Linking.openURL(url);
+      } else {
+        console.log(`Cannot open URL: ${url}`);
+      }
+    } catch (error) {
+      console.log(`Error opening URL: ${url}`, error);
+    }
+  };
+
   return (
     <>
       <View style={styles.Main}>
         <View style={styles.container}>
-          <Image source={Group2} />
+          <Image source={require("../assets/Group2.png")} />
         </View>
         <View style={styles.body1}>
           <Text style={styles.check}>Check Your Email</Text>
@@ -21,7 +36,7 @@ const Confirm: React.FC<any> = ({ navigation }) => {
         <View style={styles.btn}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Request")}
+            onPress={handleButtonPress}
           >
             <Text style={styles.buttonText}>Open email app</Text>
           </TouchableOpacity>

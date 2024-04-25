@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Client, Account, ID } from "react-native-appwrite/src";
 import ToastManager, { Toast } from 'toastify-react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { supabase } from '../lib/supabase'
 
 let client = new Client();
 client
@@ -39,8 +40,13 @@ const LoginEmail: React.FC<LoginScreenProps> = ({navigation}) => {
 
   const handleSubmit= async() => {
     if ( email  && password) {
-        await account.createEmailSession(email, password);
-        setLoggedInUser(await account.get());
+        // await account.createEmailSession(email, password);
+        // setLoggedInUser(await account.get());
+
+        const { error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        })
 
         showToasts();
 

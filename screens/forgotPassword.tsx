@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Alert, Pressable } from 'react-native'
-import back from '../assets/Group4.png'
 
 
 const Forget: React.FC<any> = ({navigation})=>{
@@ -22,7 +21,7 @@ const Forget: React.FC<any> = ({navigation})=>{
         <View style={styles.Main}>
         <View style={styles.back}>
           <Pressable onPress={ () =>{navigation.navigate('email')}}>
-            <Image source={back}/>
+            <Image source={require('../assets/Group4.png')}/>
             </Pressable>
             <Text style={styles.forgot}>Forgot Password</Text>
         </View>

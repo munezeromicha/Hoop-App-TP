@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Client, Account, ID, Models } from "react-native-appwrite/src";
 import ToastManager, { Toast } from 'toastify-react-native'
+import { supabase } from '../lib/supabase'
 
 let client = new Client();
 client
@@ -51,9 +52,18 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
 const handleSubmit = async () => {
   if (authentication && email && phoneNumber && password) {
     try {
-      await account.create(ID.unique(), email, password, phoneNumber);
-      await login(email, password);
-      setLoggedInUser(await account.get());
+      // await account.create(ID.unique(), email, password, phoneNumber);
+      // await login(email, password);
+      // setLoggedInUser(await account.get());
+
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      })
+
       showToasts();
       setTimeout(()=> {
         navigation.navigate("Login");
