@@ -1,8 +1,13 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert, Button, Touchable, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableHighlight,TextInput, Alert, Button, Touchable, Pressable } from 'react-native';
+import { StackNavigationProp } from "@react-navigation/stack";
 
-const PlanPro: React.FC<any> = ({navigation})=> {
+type PlanScreen = {
+    navigation: StackNavigationProp<any, 'planProScreen'>
+}
+
+const PlanPro: React.FC<PlanScreen> = ({navigation})=> {
     const [selected, setSelected] = useState<boolean>(false);
 
     const toggleSelection = () => {
@@ -13,7 +18,7 @@ const PlanPro: React.FC<any> = ({navigation})=> {
         <>
         <View style={styles.Main}>
                 <View style={styles.back}>
-                    <Pressable onPress={() => { navigation.navigate('phone') }}>
+                    <Pressable onPress={() => navigation.navigate('ChoosePlan') }>
                         <Image source={require('../assets/Group4.png')} />
                     </Pressable>
                     <Text style={styles.detail}>Upgrade</Text>
@@ -21,6 +26,7 @@ const PlanPro: React.FC<any> = ({navigation})=> {
             <View style={styles.container}>
             <Image source={require('../assets/Group50.png')}/>
             </View>
+
             <View style={styles.body1}>
                 <View style={styles.body2}>
                             <TouchableOpacity onPress={toggleSelection}>
@@ -30,6 +36,7 @@ const PlanPro: React.FC<any> = ({navigation})=> {
                                     color={selected ? 'red' : 'red'}
                                 />
                             </TouchableOpacity>
+
                             <View style={styles.middle}>
                                 <Text style={styles.year}>Yearly</Text>
                                 <Text style={styles.pay}>Pay for a full year</Text>
@@ -37,6 +44,8 @@ const PlanPro: React.FC<any> = ({navigation})=> {
                             </View>
                             <Text style={styles.dollar}>$210/y</Text>
             </View>
+
+
             <View style={styles.body11}>
                 <View style={styles.body21}>
                             <TouchableOpacity onPress={toggleSelection}>
@@ -160,7 +169,8 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 18,
         paddingBottom: 20,
-        fontWeight: '400'
+        fontWeight: '400',
+        marginLeft: -30
     },
     pay12: {
         backgroundColor: '#130F26',
@@ -175,6 +185,6 @@ const styles = StyleSheet.create({
     pay11: {
         color: '#fff',
         fontSize: 20,
-        fontWeight: '300'
+        fontWeight: '600'
     },
 })

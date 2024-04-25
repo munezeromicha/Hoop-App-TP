@@ -19,7 +19,7 @@ const DetailParking: React.FC<any> = ({ navigation }) => {
                     <Text style={styles.detail}>Details</Text>
                 </View>
                 <View style={styles.img1}>
-                    <Image source={ require('../assets/Location.png')} />
+                    <Image source={ require('../assets/location.png')} />
                     <Text style={styles.mall}>Graha Mall</Text>
                     <Text style={styles.street}>123 Dhaka Street</Text>
                 </View>

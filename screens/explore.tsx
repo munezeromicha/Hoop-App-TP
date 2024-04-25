@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-native'
 import React from 'react';
-import Rectangle2 from '../assets/Rectangle60.png';
-import compas from '../assets/locCompas.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const Explore: React.FC<any> = ({navigation}) => {
@@ -79,7 +77,7 @@ const Explore: React.FC<any> = ({navigation}) => {
                 <View style={styles.boxTwo}>
                 <TouchableOpacity >
                     <View style={styles.insideBox} >
-                        <Image source={Rectangle2}/>
+                        <Image source={require('../assets/Rectangle60.png')}/>
 
                         <View style={styles.twoText}>
                             <View>
@@ -103,7 +101,7 @@ const Explore: React.FC<any> = ({navigation}) => {
 
       <View >
         <TouchableOpacity style={styles.locate}>
-            <Image source={compas} />
+            <Image source={require('../assets/locCompas.png')} />
         </TouchableOpacity>
       </View>
 

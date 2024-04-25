@@ -1,20 +1,33 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
-import { useState } from 'react';
-import MaskGroup from '../assets/MaskGroup.png';
-import { Ionicons } from '@expo/vector-icons'; 
-import { StackNavigationProp } from '@react-navigation/stack';
-import React = require('react');
+import {StyleSheet,View,Text,Image,TouchableOpacity,TextInput,Button,Alert,TouchableWithoutFeedback} from "react-native";
+import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { Client, Account, ID, Models } from "react-native-appwrite/src";
+import ToastManager, { Toast } from 'toastify-react-native'
+
+let client = new Client();
+client
+  .setEndpoint("https://cloud.appwrite.io/v1")
+  .setProject("662658e8596ec1427342");
+
+let account = new Account(client);
 
 type RegisterScreenProps = {
-  navigation: StackNavigationProp<any, 'RegisterScreen'>;
+  navigation: StackNavigationProp<any, "RegisterScreen">;
 };
 
 const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
-  const [authentication, setAuthentication] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
+
+  const showToasts = () => {
+    Toast.success('Created Successfully!')
+  }
+
+  const [authentication, setAuthentication] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   const handleAuthenticationChange = (text: string) => {
     setAuthentication(text);
@@ -35,83 +48,121 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit = () => {
-    if (authentication && email && phoneNumber && password) {
-      Alert.alert('Account Created Successfully!');
-    } else {
-      Alert.alert('Failed', 'Please fill in all fields');
+const handleSubmit = async () => {
+  if (authentication && email && phoneNumber && password) {
+    try {
+      await account.create(ID.unique(), email, password, phoneNumber);
+      await login(email, password);
+      setLoggedInUser(await account.get());
+      showToasts();
+      setTimeout(()=> {
+        navigation.navigate("Login");
+      }, 3000);
+      
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Failed", "An error occurred while registering.");
     }
-  };
+  } else {
+    Alert.alert("Failed", "Please fill in all fields.");
+  }
+};
+
+async function login(email: string, password: string) {
+  await account.createEmailSession(email, password);
+  setLoggedInUser(await account.get());
+}
+
+// function setLoggedInUser(user: Models.User<Models.Preferences>) {
+//   setLoggedInUser(user);
+// }
+
   return (
     <>
       <View style={styles.Main}>
-        <Image style={styles.image} source={MaskGroup} />
+      <ToastManager />
+        <Image
+          style={styles.image}
+          source={require("../assets/MaskGroup.png")}
+        />
         <Text style={styles.glad}>Let's start!!</Text>
         <View style={styles.container}>
           <View style={styles.body1}>
-          <View style={styles.inputs1}>
-            <TextInput
-              style={styles.email}
-              placeholder="Email"
-              keyboardType="email-address"
-              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-              value={email}
-              onChangeText={handleEmailChange}
-            />
-          </View>
-        <View style={styles.inputs1}>
-        <View style={styles.passwordInputContainer}>
-            <TextInput
-              style={styles.email1}
-              placeholder="Password"
-              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-              secureTextEntry={secureTextEntry}
-              value={password}
-              onChangeText={handlePasswordChange}
-            />
-            <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
-              <Ionicons name={secureTextEntry ? 'eye-outline' : 'eye-off-outline'} size={24} color="gray" />
-            </TouchableWithoutFeedback>
-          </View>
-        </View>
-          <View style={styles.inputs1}>
-            <TextInput
-              style={styles.email}
-              placeholder="Password Authentication"
-              keyboardType="default"
-              secureTextEntry
-              placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-              value={authentication}
-              onChangeText={handleAuthenticationChange}
-            />
-          </View>
-          <View style={styles.inputs1}>
-          <TextInput
-          style={styles.email}
-          placeholder="Phone number"
-          keyboardType="phone-pad"
-          placeholderTextColor= "rgba(45, 45, 45, 0.5)"
-          value={phoneNumber}
-          onChangeText={handlePhoneNumberChange}
-          />
-          </View>
+            <View style={styles.inputs1}>
+              <TextInput
+                style={styles.email}
+                placeholder="Email"
+                keyboardType="email-address"
+                placeholderTextColor="rgba(45, 45, 45, 0.5)"
+                value={email}
+                onChangeText={handleEmailChange}
+              />
+            </View>
+            <View style={styles.inputs1}>
+              <View style={styles.passwordInputContainer}>
+                <TextInput
+                  style={styles.email1}
+                  placeholder="Password"
+                  placeholderTextColor="rgba(45, 45, 45, 0.5)"
+                  secureTextEntry={secureTextEntry}
+                  value={password}
+                  onChangeText={handlePasswordChange}
+                />
+                <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
+                  <Ionicons
+                    name={secureTextEntry ? "eye-outline" : "eye-off-outline"}
+                    size={24}
+                    color="gray"
+                  />
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+            <View style={styles.inputs1}>
+              <TextInput
+                style={styles.email}
+                placeholder="Password Authentication"
+                keyboardType="default"
+                secureTextEntry
+                placeholderTextColor="rgba(45, 45, 45, 0.5)"
+                value={authentication}
+                onChangeText={handleAuthenticationChange}
+              />
+            </View>
+            <View style={styles.inputs1}>
+              <TextInput
+                style={styles.email}
+                placeholder="Phone number"
+                keyboardType="phone-pad"
+                placeholderTextColor="rgba(45, 45, 45, 0.5)"
+                value={phoneNumber}
+                onChangeText={handlePhoneNumberChange}
+              />
+            </View>
           </View>
           <View style={styles.btn}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {handleSubmit}}
-      >
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
-      </View>
-        <Text style={styles.bottomText}>Have an account
-          <Text style={styles.lastText} onPress={() => {navigation.navigate('email')}}> Sign In</Text>
-        </Text>
-      </View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.bottomText}>
+            Have an account
+            <Text
+              style={styles.lastText}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              Sign In
+            </Text>
+          </Text>
         </View>
+      </View>
     </>
-  )
-}
+  );
+};
 
 export default Register;
 
@@ -120,47 +171,47 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
   },
-  body1:{
-    paddingTop: 20,
-    height:'40%',
+  body1: {
+    // paddingTop: 20,
+    height: "40%",
   },
   Main: {
-    backgroundColor: '#130F26',
-    height: '100%',
+    backgroundColor: "#130F26",
+    height: "100%",
   },
   image: {
-    height: '20%',
-    width: '100%',
+    height: "20%",
+    width: "100%",
   },
-  glad:{
+  glad: {
     fontSize: 30,
-    position: 'absolute',
+    position: "absolute",
     padding: 70,
-    color: '#fff',
+    color: "#fff",
   },
   email1: {
     flex: 1,
     height: 40,
     paddingLeft: 10,
     fontSize: 16,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 5,
   },
   passwordInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
     paddingRight: 6,
     borderRadius: 5,
   },
   container: {
-    height: '100%',
-    backgroundColor: '#F4F4FA',
+    height: "100%",
+    backgroundColor: "#F4F4FA",
     borderTopLeftRadius: 38,
     borderTopEndRadius: 38,
   },
   inputs1: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     margin: 30,
     marginTop: 30,
     marginBottom: 0,
@@ -173,34 +224,35 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 16,
   },
-  btn:{
-    height: '32%',
-    display: 'flex',
-    justifyContent: 'flex-end',
+  btn: {
+    height: "32%",
+    display: "flex",
+    justifyContent: "flex-end",
     paddingHorizontal: 30,
   },
   button: {
-    backgroundColor: '#130F26',
+    backgroundColor: "#130F26",
     padding: 20,
     borderRadius: 20,
-    margin: 20,
-    textAlign: 'center',
+    marginBottom: '-10%',
+    textAlign: "center",
   },
   buttonText: {
-    color: '#fff',
-    textAlign: 'center',
+    color: "#fff",
+    textAlign: "center",
     fontSize: 20,
   },
   bottomText: {
     flex: 5,
-    alignSelf: 'center',
-    paddingTop: 10,
-    color: '#rgba(45, 45, 45, 0.5)',
+    alignSelf: "center",
+    // paddingTop: 10,
+    color: "#rgba(45, 45, 45, 0.5)",
+    marginTop: '9%'
   },
   lastText: {
-    fontWeight: '500',
+    fontWeight: "500",
     fontSize: 14,
-    color: '#F43939',
+    color: "#F43939",
   },
-})
+});
 

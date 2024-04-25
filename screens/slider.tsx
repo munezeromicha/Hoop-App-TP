@@ -1,11 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-import Asset1 from '../assets/Asset1.png';
-import Asset2 from '../assets/Asset2.png';
-import Asset3 from '../assets/Asset3.png';
-import Message from '../assets/Message.png';
-import Call from '../assets/Call.png';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { StackNavigationProp } from '@react-navigation/stack';
 import LoginEmail from './LoginScreen';
@@ -19,19 +14,19 @@ const slides = [
     id: 1,
     title: "Welcome",
     description: "Find the best possible way to park",
-    image: Asset1
+    image: require('../assets/Asset1.png')
   },
   {
     id: 2,
     title: "Hollaaa",
     description: "Find the best possible parking space nearby your desired destination",
-    image: Asset2
+    image: require('../assets/Asset2.png')
   },
   {
     id: 3,
     title: "Find Parking",
     description: "Find your perfect parking space wherever and whenever you need",
-    image: Asset3
+    image: require('../assets/Asset3.png')
   }
 ];
 
@@ -90,10 +85,10 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
         />
         <View style={styles.nonSwipingContent}>
           <TouchableOpacity style={styles.buttonOne} onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.buttonText}><Image source={Message} />Login with Email</Text>
+            <Text style={styles.buttonText}><Image source={require('../assets/Message.png')} />Login with Email</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonTwo} onPress={() => navigation.navigate('Phone')}>
-            <Text style={styles.buttonTextTwo}><Image source={Call} />Login with Phone</Text>
+            <Text style={styles.buttonTextTwo}><Image source={require('../assets/Call.png')} />Login with Phone</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomText}>
@@ -102,9 +97,9 @@ const Slider: React.FC<SliderScreenProps> = ({ navigation }) => {
       </View>
     );
   }
-  return(
-    <LoginEmail />
-  )
+  // return(
+  //   <LoginEmail />
+  // )
 };
 
 const styles = StyleSheet.create({
