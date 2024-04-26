@@ -13,14 +13,16 @@ import ToastManager, { Toast } from "toastify-react-native";
 import CountryPicker, { Country } from "react-native-country-picker-modal";
 import { Ionicons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Client, Account, ID,Models } from "react-native-appwrite/src";
+import { supabase } from '../lib/supabase';
 
-let client = new Client();
-client
-  .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("662658e8596ec1427342");
+// import { Client, Account, ID,Models } from "react-native-appwrite/src";
 
-let account = new Account(client);
+// let client = new Client();
+// client
+//   .setEndpoint("https://cloud.appwrite.io/v1")
+//   .setProject("662658e8596ec1427342");
+
+// let account = new Account(client);
 
 type PhoneScreenProps = {
   navigation: StackNavigationProp<any, "PhoneScreen">;
@@ -45,27 +47,63 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
     setPassword(text);
   };
 
-  const onSelectCountry = (country: Country) => {
-    setCoutryCode(country.cca2);
-  };
+  // const onSelectCountry = (country: Country) => {
+  //   setCoutryCode(country.cca2);
+  // };
   const togglePasswordVisibility = () => {
     setSecureTextEntry(!secureTextEntry);
   };
-  const handleSubmit = async () => {
-    if (phoneNumber && password) {
+
+  const handleSubmit = async() => {
       try {
-        await account.createPhoneSession(phoneNumber, password);
-        setLoggedInUser(await account.get());
+        if (phoneNumber.length < 10 || phoneNumber.length > 12) {
+          setError('Phone number must be between 10 and 12 digits');
+          return;
+        }
+    
+        const { user, error: signInError } = await supabase.auth.signInWithPassword({
+          phone: phoneNumber,
+          password,
+        });
+    
+        if (signInError) {
+          if (signInError.message.includes('password')) {
+            navigation.navigate('Login');
+          } else {
+            setError(signInError.message);
+          }
+          return;
+        }
         showToasts();
-        navigation.navigate("Home");
+  
+        setTimeout(() => {
+          navigation.navigate('Home');
+        }, 3000);
+        console.log('User logged in:', user);
       } catch (error) {
-        console.error(error);
-        Alert.alert("Failed", "Please check your phone number and password");
+        setError((error as Error).message);
       }
-    } else {
-      Alert.alert("Failed", "Please fill in all fields");
-    }
-  };
+
+  }
+
+
+  // const handleSubmit = async () => {
+  //   if (phoneNumber && password) {
+  //     try {
+  //       await account.createPhoneSession(phoneNumber, password);
+  //       setLoggedInUser(await account.get());
+  //       showToasts();
+  //       navigation.navigate("Home");
+  //     } catch (error) {
+  //       console.error(error);
+  //       Alert.alert("Failed", "Please check your phone number and password");
+  //     }
+  //   } else {
+  //     Alert.alert("Failed", "Please fill in all fields");
+  //   }
+  // };
+  
+
   return (
     <View style={styles.Main}>
       <ToastManager />
@@ -74,7 +112,7 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.inputs12}>
           <View style={styles.phoneInputContainer}>
-            <CountryPicker
+            {/* <CountryPicker
               countryCode={countryCode}
               withFlagButton={false}
               withFilter
@@ -83,12 +121,13 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
               withCallingCode
               onSelect={onSelectCountry}
               // visible
-            />
+            /> */}
             <TextInput
               style={styles.phoneNumberInput}
               placeholder="Phone Number"
               keyboardType="phone-pad"
               placeholderTextColor="rgba(45, 45, 45, 0.5)"
+             
               value={phoneNumber}
               onChangeText={handlePhoneNumberChange}
             />
@@ -245,3 +284,7 @@ const styles = StyleSheet.create({
     color: "#F43939",
   },
 });
+function setError(message: string) {
+  throw new Error("Function not implemented.");
+}
+

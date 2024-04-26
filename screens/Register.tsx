@@ -2,16 +2,10 @@ import {StyleSheet,View,Text,Image,TouchableOpacity,TextInput,Button,Alert,Touch
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Client, Account, ID, Models } from "react-native-appwrite/src";
+// import { Client, Account, ID, Models } from "react-native-appwrite/src";
 import ToastManager, { Toast } from 'toastify-react-native'
-import { supabase } from '../lib/supabase'
+import { supabase } from '../lib/supabase';
 
-let client = new Client();
-client
-  .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("662658e8596ec1427342");
-
-let account = new Account(client);
 
 type RegisterScreenProps = {
   navigation: StackNavigationProp<any, "RegisterScreen">;
@@ -23,12 +17,14 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     Toast.success('Created Successfully!')
   }
 
+
   const [authentication, setAuthentication] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const [loggedInUser, setLoggedInUser] = useState("");
+  // const [loggedInUser, setLoggedInUser] = useState("");
+  const [error, setError] = useState('');
 
   const handleAuthenticationChange = (text: string) => {
     setAuthentication(text);
@@ -49,39 +45,125 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-const handleSubmit = async () => {
-  if (authentication && email && phoneNumber && password) {
+
+  const handleRegistration = async () => {
     try {
-      // await account.create(ID.unique(), email, password, phoneNumber);
-      // await login(email, password);
-      // setLoggedInUser(await account.get());
-
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      })
-
+      // Validate input fields
+      if (password !== authentication) {
+        setError('Passwords do not match');
+        return;
+      }
+  
+      // Create a new user with email, password, and phone number
+      const { user, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        phone: phoneNumber,
+      });
+  
+      if (signUpError) {
+        setError(signUpError.message);
+        return;
+      }
+  
+      console.log('User created:', user);
+  
       showToasts();
-      setTimeout(()=> {
-        navigation.navigate("Login");
+  
+      setTimeout(() => {
+        navigation.navigate('Login');
       }, 3000);
-      
     } catch (error) {
-      console.error(error);
-      Alert.alert("Failed", "An error occurred while registering.");
+      setError((error as Error).message);
     }
-  } else {
-    Alert.alert("Failed", "Please fill in all fields.");
-  }
-};
+  };
+  
+  
+  
 
-async function login(email: string, password: string) {
-  await account.createEmailSession(email, password);
-  setLoggedInUser(await account.get());
-}
+  // const handleRegistration = async () => {
+  //   try {
+  //     if (password !== authentication) {
+  //       setError('Passwords do not match');
+  //       return;
+  //     }
+  
+  //     const { data, error: signUpError } = await supabase.auth.signUp({
+  //       email,
+  //       password,
+  //       phone: phoneNumber,
+  //     });
+  
+  //     if (signUpError) {
+  //       setError(signUpError.message);
+  //       return;
+  //     }
+  
+  //     const { error: updateError } = await supabase.auth.updateUser({
+  //       phone: phoneNumber,
+  //     });
+  
+  //     if (updateError) {
+  //       setError(updateError.message);
+  //       return;
+  //     }
+  
+  //     console.log('User created:', data.user);
+  //     showToasts();
+
+  //     setTimeout(() =>{
+  //       navigation.navigate('Login')
+  //     }, 3000)
+  //   } catch (error) {
+  //     setError((error as Error).message);
+  //   }
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+// const handleSubmit = async () => {
+//   if (authentication && email && phoneNumber && password) {
+//     try {
+//       // await account.create(ID.unique(), email, password, phoneNumber);
+//       // await login(email, password);
+//       // setLoggedInUser(await account.get());
+
+//       const {
+//         data: { session },
+//         error,
+//       } = await supabase.auth.signUp({
+//         email: email,
+//         password: password,
+//         phoneNumber: phoneNumber
+//       })
+
+//       showToasts();
+//       setTimeout(()=> {
+//         navigation.navigate("Login");
+//       }, 3000);
+      
+//     } catch (error) {
+//       console.error(error);
+//       Alert.alert("Failed", "An error occurred while registering.");
+//     }
+//   } else {
+//     Alert.alert("Failed", "Please fill in all fields.");
+//   }
+// };
+
+// async function login(email: string, password: string) {
+//   await account.createEmailSession(email, password);
+//   setLoggedInUser(await account.get());
+// }
 
 // function setLoggedInUser(user: Models.User<Models.Preferences>) {
 //   setLoggedInUser(user);
@@ -152,7 +234,7 @@ async function login(email: string, password: string) {
           <View style={styles.btn}>
             <TouchableOpacity
               style={styles.button}
-              onPress={handleSubmit}
+              onPress={handleRegistration}
             >
               <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
