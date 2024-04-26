@@ -1,17 +1,45 @@
-import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-native'
-import React from 'react';
-import Search from '../assets/SearchTwo.png';
-import buttonOne from '../assets/Group189.png';
-import Rectangle1 from '../assets/Rectangle59.png';
-import Rectangle2 from '../assets/Rectangle60.png';
-import compas from '../assets/Location.png';
+import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, { useMemo, useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { database } from "../app-write/config";
+import { Query } from "react-native-appwrite/src";
 
 type ExploreScreenProps = {
   navigation: StackNavigationProp<any, 'ExploreScreen'>;
 };
 
 const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
+    const [parking, setParking] = useState<
+    |{id:string;
+    Heading:string;
+    address:string;
+    price:string;
+    image:string;
+  }[]
+    | any []>([]);
+  
+    const loadParking = useMemo(async()=>{
+      const { documents } = await database.listDocuments(
+        "662abb159280f531844e",
+        "662abb748bdb8fbe70e8",
+        [Query.limit(5)]
+      );
+      documents.forEach((current) => {
+        setParking((value) => {
+          return [
+            ...value,
+            {
+              id:current.$id,
+              price:current.price,
+              address:current.address,
+              Heading:current.Heading,
+              image:current.image
+            }
+          ]
+        })
+      });
+    }, []);
+  
   return (
     <View style={styles.bigBlock}>
       <View>  
@@ -19,7 +47,7 @@ const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
       </View>
        
         <View style={styles.searchContainer}>
-         <Image source={Search} style={styles.icon} />
+         <Image source={require('../assets/SearchTwo.png')} style={styles.icon} />
         <TextInput
         placeholder="Search"
         style={styles.holderInput}
@@ -29,7 +57,7 @@ const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
 
       <View style={styles.blockThree}>  
         <TouchableOpacity style={styles.buttonOneIcon} onPress={()=>navigation.navigate('History')}>
-            <Image source={buttonOne} />
+            <Image source={require('../assets/Group189.png')} />
         </TouchableOpacity>
         <Text style={styles.textBlockThree}>Most Popular Most Wanted</Text>
       </View>
@@ -38,79 +66,134 @@ const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
       <View style={styles.blockFour}>  
        
       <View style={styles.boxTwo}>
-                <TouchableOpacity >
-                    <View style={styles.insideBox} >
-                        <Image source={Rectangle1}/>
-
+                {parking.length === 0 ? (
+                  <ActivityIndicator color="black" size="large" />
+                ) : (
+                  parking.map((parkings) =>{
+                    console.log(parkings);
+                    return(
+                      <View style={styles.insideBox}
+                      key={parkings.id}>
+                        <Image 
+                        source={{
+                          uri: parkings.image
+                        }} style={styles.card} />
+    
                         <View style={styles.twoText}>
-                            <View>
-                            <Text style={styles.Mall}>Graha Mall</Text>
-                            <Text style={styles.Street}>123 Dhaka Street</Text>
-                            </View>
-                        <View>
-                            <Text style={styles.sevenHours}><Text style={styles.insideHours}>$7</Text><Text>/hour</Text></Text>
+                          <View>
+                            <Text style={styles.Mall}>
+                              {parkings.Heading}
+                            </Text>
+                            <Text style={styles.Street}>
+                              {parkings.address}
+                            </Text>
+                          </View>
+                          <View>
+                            <Text style={styles.sevenHours}>
+                              <Text style={styles.insideHours}>
+                                {parkings.price}
+                              </Text>
+                              <Text>/hour</Text>
+                            </Text>
+                          </View>
                         </View>
-                        </View>
-
+    
                         <View style={styles.minutes}>
-                        <Text style={styles.sevenMinutes}>7 min</Text>
+                          <Text style={styles.sevenMinutes}>7 min</Text>
                         </View>
-
-                    </View></TouchableOpacity>
-                </View> 
-
-                <View style={styles.boxTwo}>
-                <TouchableOpacity >
-                    <View style={styles.insideBox} >
-                        <Image source={Rectangle1}/>
-
+                      </View>
+                    )
+                  })
+                )}
+              </View>
+              <View style={styles.boxTwo}>
+                {parking.length === 0 ? (
+                  <ActivityIndicator color="black" size="large" />
+                ) : (
+                  parking.map((parkings) =>{
+                    console.log(parkings);
+                    return(
+                      <View style={styles.insideBox}
+                      key={parkings.id}>
+                        <Image 
+                        source={{
+                          uri: parkings.image
+                        }} style={styles.card} />
+    
                         <View style={styles.twoText}>
-                            <View>
-                            <Text style={styles.Mall}>Graha Mall</Text>
-                            <Text style={styles.Street}>123 Dhaka Street</Text>
-                            </View>
-                        <View>
-                            <Text style={styles.sevenHours}><Text style={styles.insideHours}>$7</Text><Text>/hour</Text></Text>
+                          <View>
+                            <Text style={styles.Mall}>
+                              {parkings.Heading}
+                            </Text>
+                            <Text style={styles.Street}>
+                              {parkings.address}
+                            </Text>
+                          </View>
+                          <View>
+                            <Text style={styles.sevenHours}>
+                              <Text style={styles.insideHours}>
+                                {parkings.price}
+                              </Text>
+                              <Text>/hour</Text>
+                            </Text>
+                          </View>
                         </View>
-                        </View>
-
+    
                         <View style={styles.minutes}>
-                        <Text style={styles.sevenMinutes}>7 min</Text>
+                          <Text style={styles.sevenMinutes}>7 min</Text>
                         </View>
+                      </View>
+                    )
+                  })
+                )}
+              </View>
 
-                    </View></TouchableOpacity>
-
-
-                </View> 
-
-                <View style={styles.boxTwo}>
-                <TouchableOpacity >
-                    <View style={styles.insideBox} >
-                        <Image source={Rectangle2}/>
-
+              <View style={styles.boxTwo}>
+                {parking.length === 0 ? (
+                  <ActivityIndicator color="black" size="large" />
+                ) : (
+                  parking.map((parkings) =>{
+                    console.log(parkings);
+                    return(
+                      <View style={styles.insideBox}
+                      key={parkings.id}>
+                        <Image 
+                        source={{
+                          uri: parkings.image
+                        }} style={styles.card} />
+    
                         <View style={styles.twoText}>
-                            <View>
-                            <Text style={styles.Mall}>Graha Mall</Text>
-                            <Text style={styles.Street}>123 Dhaka Street</Text>
-                            </View>
-                        <View>
-                            <Text style={styles.sevenHours}><Text style={styles.insideHours}>$7</Text><Text>/hour</Text></Text>
+                          <View>
+                            <Text style={styles.Mall}>
+                              {parkings.Heading}
+                            </Text>
+                            <Text style={styles.Street}>
+                              {parkings.address}
+                            </Text>
+                          </View>
+                          <View>
+                            <Text style={styles.sevenHours}>
+                              <Text style={styles.insideHours}>
+                                {parkings.price}
+                              </Text>
+                              <Text>/hour</Text>
+                            </Text>
+                          </View>
                         </View>
-                        </View>
-
+    
                         <View style={styles.minutes}>
-                        <Text style={styles.sevenMinutes}>7 min</Text>
+                          <Text style={styles.sevenMinutes}>7 min</Text>
                         </View>
-
-                    </View></TouchableOpacity>
-
-
-                </View> 
+                      </View>
+                    )
+                  })
+                )}
+              </View>
       </View>
 
       <View >
         <TouchableOpacity style={styles.locate}>
-            <Image source={compas} />
+            <Image source={require('../assets/Location.png')} />
         </TouchableOpacity>
       </View>
 
@@ -122,7 +205,6 @@ export default Explore
 
 const styles = StyleSheet.create({
     locate:{
-        
         width: 52,
         height: 55,
         borderRadius: 50,
@@ -184,6 +266,10 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         paddingLeft: '4%'
+    },
+    card:{
+      width: '30%',
+      height: '20%',
     },
     buttonOneIcon:{
         width: 73,
