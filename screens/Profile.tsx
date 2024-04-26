@@ -13,15 +13,17 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Client, Account, ID } from "react-native-appwrite/src";
+// import { Client, Account, ID } from "react-native-appwrite/src";
+import { supabase } from  '../lib/supabase';
+import ToastManager, { Toast } from 'toastify-react-native'
 
 
-let client = new Client();
-client
-  .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject('662658e8596ec1427342')
+// let client = new Client();
+// client
+//   .setEndpoint('https://cloud.appwrite.io/v1')
+//   .setProject('662658e8596ec1427342')
 
-let account = new Account(client);
+// let account = new Account(client);
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<any, "HomeScreen">;
@@ -54,15 +56,31 @@ const Settings = [
 
 
 const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
+
+  const showToasts = () => {
+    Toast.success(' You Logged out')
+  }
   
   const [value, setValue] = useState<string | null>(null);
   const [user, setUser] = useState(null);
 
-  async function logout(){
-    await account.deleteSession("current");
-    setUser(null);
-    navigation.navigate('Login');
+  // async function logout(){
+  //   await account.deleteSession("current");
+  //   setUser(null);
+  //   navigation.navigate('Login');
+  // }
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+
+    showToasts();
+
+    setTimeout(() =>{
+      navigation.navigate('Login');
+    },3000)
+    
   }
+  
 
   const navigations = useNavigation();
 
@@ -78,6 +96,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   return (
     <>
+    <ToastManager />
       <View style={styles.Main}>
         <Image style={styles.image} source={require("../assets/MaskGroup.png")} />
         <View style={styles.TextGroup}>
@@ -91,7 +110,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 <Text style={styles.name}>Diane</Text>
               </View>
 
-              <TouchableOpacity style={styles.LogoutBtn} onPress={logout}>
+              <TouchableOpacity style={styles.LogoutBtn} onPress={signOut}>
                 <Image source={require("../assets/Logout.png")} />
               </TouchableOpacity>
             </View>

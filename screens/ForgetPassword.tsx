@@ -11,6 +11,7 @@ import {
   Pressable,
 } from "react-native";
 import { Client, Account } from 'appwrite';
+import { supabase } from "../lib/supabase";
 
 const client = new Client()
   .setEndpoint('https://cloud.appwrite.io/v1')
@@ -33,18 +34,12 @@ const Forget: React.FC<ForgetProps> = ({ navigation }) => {
     }
 
     try {
-      console.log('Checking for email:', email.toLowerCase());
-
-      const user = await account.get('users', ['email'], { email: email.toLowerCase() }); 
-
-      if (!user || !user.length) {
-        setMessage('The email address was not found in our system.'); 
-        return;
-      }
-
-      const userId = user[0].$id;
-      await account.sendMagicLink(userId, 'password_recovery');
-      setMessage('Password reset email sent'); 
+      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: 'https://gmail.com/',
+      })
+      setTimeout(()=> {
+        navigation.navigate("Confirm");
+      }, 1000);
     } catch (error) {
       console.error('Error sending recovery email:', error);
       setMessage('Error sending password reset email'); 
