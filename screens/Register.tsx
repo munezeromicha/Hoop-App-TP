@@ -3,12 +3,32 @@ import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons'; 
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
+import { Client, Account, ID } from 'appwrite';
+import Toast from 'react-native-toast-message';
+
+const client = new Client(); 
+
+client
+   .setEndpoint('https://cloud.appwrite.io/v1')
+   .setProject('6626bd912e893160ae48')
+
+const account = new Account(client);
+interface User{}
 
 type RegisterScreenProps = {
   navigation: StackNavigationProp<any, 'RegisterScreen'>;
 };
 
 const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
+  
+  const showToasts = () => {
+    Toast.show({
+    type:'success',
+    text1:'Logged In'
+  })
+  }
+
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null)
   const [authentication, setAuthentication] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -34,11 +54,20 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit = () => {
-    if (authentication && email && phoneNumber && password) {
-      Alert.alert('Account Created Successfully!');
-    } else {
-      Alert.alert('Failed', 'Please fill in all fields');
+  const handleSubmit = async() =>{
+    if( email && password && phoneNumber && authentication){
+      try{
+      await account.create(ID.unique(), email, password, phoneNumber);
+      await Login(email, password);
+      setLoggedInUser(await account.get());
+      showToasts();
+      navigation.navigate('Login');
+    }catch(error){
+      console.error(error);
+      Alert.alert("failed")
+    }
+    }else{
+      Alert.alert('Failed', 'Please fill in all fields')
     }
   };
   return (
@@ -104,7 +133,7 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
       </TouchableOpacity>
       </View>
         <Text style={styles.bottomText}>Have an account
-          <Text style={styles.lastText} onPress={() => {navigation.navigate('Login')}}> Sign In</Text>
+          <Text style={styles.lastText} onPress={() => {navigation.navigate('email')}}> Sign In</Text>
         </Text>
       </View>
         </View>
@@ -203,3 +232,6 @@ const styles = StyleSheet.create({
   },
 })
 
+function Login(email: string, password: string){
+  throw new Error("function not implemented")
+}

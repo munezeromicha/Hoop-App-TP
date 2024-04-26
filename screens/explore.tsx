@@ -2,7 +2,11 @@ import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-n
 import React from 'react';
 import Rectangle2 from '../assets/Rectangle60.png';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import compas from '../assets/locCompas.png';
+=======
+import compas from '../assets/location.png';
+>>>>>>> Stashed changes
 =======
 import compas from '../assets/location.png';
 >>>>>>> Stashed changes
