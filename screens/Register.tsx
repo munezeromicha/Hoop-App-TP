@@ -1,34 +1,14 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
 import { useState } from 'react';
-import React from 'react';
 import { Ionicons } from '@expo/vector-icons'; 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Client, Account, ID } from 'appwrite';
-import Toast from 'react-native-toast-message';
-
-const client = new Client(); 
-
-client
-   .setEndpoint('https://cloud.appwrite.io/v1')
-   .setProject('6626bd912e893160ae48')
-
-const account = new Account(client);
-interface User{}
+import React from 'react';
 
 type RegisterScreenProps = {
   navigation: StackNavigationProp<any, 'RegisterScreen'>;
 };
 
 const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
-
-    const showToasts = () => {
-    Toast.show({
-    type:'success',
-    text1:'Logged In'
-  })
-  }
-
-  const [loggedInUser, setLoggedInUser] = useState<User | null>(null)
   const [authentication, setAuthentication] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -54,16 +34,13 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit = async() =>{
-    if( email && password && authentication && phoneNumber){
-      await account.create(ID.unique(), email, password ,authentication);
-      setLoggedInUser(await account.get());
-      showToasts();
-      navigation.navigate('Login');
-    }else{
-      Alert.alert('Failed', 'Please fill in all fields')
+  const handleSubmit = () => {
+    if (authentication && email && phoneNumber && password) {
+      Alert.alert('Account Created Successfully!');
+    } else {
+      Alert.alert('Failed', 'Please fill in all fields');
     }
-  }
+  };
   return (
     <>
       <View style={styles.Main}>
@@ -127,13 +104,14 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
       </TouchableOpacity>
       </View>
         <Text style={styles.bottomText}>Have an account
-          <Text style={styles.lastText} onPress={() => {navigation.navigate('email')}}> Sign In</Text>
+          <Text style={styles.lastText} onPress={() => {navigation.navigate('Login')}}> Sign In</Text>
         </Text>
       </View>
         </View>
     </>
   )
 }
+
 export default Register;
 
 const styles = StyleSheet.create({
@@ -194,28 +172,28 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 16,
   },
-  btn:{
-    height: '32%',
-    display: 'flex',
-    justifyContent: 'flex-end',
+  btn: {
+    height: "32%",
+    display: "flex",
+    justifyContent: "flex-end",
     paddingHorizontal: 30,
   },
   button: {
-    backgroundColor: '#130F26',
+    backgroundColor: "#130F26",
     padding: 20,
     borderRadius: 20,
-    margin: 20,
-    textAlign: 'center',
+    marginBottom: '-10%',
+    textAlign: "center",
   },
   buttonText: {
-    color: '#fff',
-    textAlign: 'center',
+    color: "#fff",
+    textAlign: "center",
     fontSize: 20,
   },
   bottomText: {
     flex: 5,
     alignSelf: 'center',
-    paddingTop: 10,
+    paddingTop: 40,
     color: '#rgba(45, 45, 45, 0.5)',
   },
   lastText: {
@@ -224,12 +202,4 @@ const styles = StyleSheet.create({
     color: '#F43939',
   },
 })
-
-function Login(email: string, password: string){
-  throw new Error("Function not implemented")
-}
-
-function setLoggedInUser() {
-  throw new Error('Function not implemented.');
-}
 

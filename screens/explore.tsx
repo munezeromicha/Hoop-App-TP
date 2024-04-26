@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-native'
 import React from 'react';
 import Rectangle2 from '../assets/Rectangle60.png';
+<<<<<<< Updated upstream
 import compas from '../assets/locCompas.png';
+=======
+import compas from '../assets/location.png';
+>>>>>>> Stashed changes
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const Explore: React.FC<any> = ({navigation}) => {
