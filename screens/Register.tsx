@@ -55,7 +55,7 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
       }
   
       // Create a new user with email, password, and phone number
-      const { user, error: signUpError } = await supabase.auth.signUp({
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email,
         password,
         phone: phoneNumber,
@@ -66,7 +66,7 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
         return;
       }
   
-      console.log('User created:', user);
+      console.log('User created:', data.user);
   
       showToasts();
   

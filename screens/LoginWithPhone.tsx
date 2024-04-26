@@ -61,7 +61,7 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
           return;
         }
     
-        const { user, error: signInError } = await supabase.auth.signInWithPassword({
+        const { data, error: signInError } = await supabase.auth.signInWithPassword({
           phone: phoneNumber,
           password,
         });
@@ -79,7 +79,7 @@ const LoginPhone: React.FC<PhoneScreenProps> = ({ navigation }) => {
         setTimeout(() => {
           navigation.navigate('Home');
         }, 3000);
-        console.log('User logged in:', user);
+        console.log('User logged in:', data.user);
       } catch (error) {
         setError((error as Error).message);
       }
