@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity } from 'react-native'
 import React from 'react';
+import Search from '../assets/SearchTwo.png';
+import buttonOne from '../assets/Group189.png';
+import Rectangle1 from '../assets/Rectangle59.png';
 import Rectangle2 from '../assets/Rectangle60.png';
-import compas from '../assets/locCompas.png';
+import compas from '../assets/location.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-const Explore: React.FC<any> = ({navigation}) => {
+type ExploreScreenProps = {
+  navigation: StackNavigationProp<any, 'ExploreScreen'>;
+};
+
+const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
   return (
     <View style={styles.bigBlock}>
       <View>  
@@ -12,7 +19,7 @@ const Explore: React.FC<any> = ({navigation}) => {
       </View>
        
         <View style={styles.searchContainer}>
-         <Image source={require('../assets/SearchTwo.png')} style={styles.icon} />
+         <Image source={Search} style={styles.icon} />
         <TextInput
         placeholder="Search"
         style={styles.holderInput}
@@ -21,8 +28,8 @@ const Explore: React.FC<any> = ({navigation}) => {
     </View>
 
       <View style={styles.blockThree}>  
-        <TouchableOpacity style={styles.buttonOneIcon} onPress={()=>navigation.navigate('ShowMap')}>
-            <Image source={require('../assets/Group189.png')} />
+        <TouchableOpacity style={styles.buttonOneIcon} onPress={()=>navigation.navigate('History')}>
+            <Image source={buttonOne} />
         </TouchableOpacity>
         <Text style={styles.textBlockThree}>Most Popular Most Wanted</Text>
       </View>
@@ -33,7 +40,7 @@ const Explore: React.FC<any> = ({navigation}) => {
       <View style={styles.boxTwo}>
                 <TouchableOpacity >
                     <View style={styles.insideBox} >
-                        <Image source={require('../assets/Rectangle1.png')}/>
+                        <Image source={Rectangle1}/>
 
                         <View style={styles.twoText}>
                             <View>
@@ -55,7 +62,7 @@ const Explore: React.FC<any> = ({navigation}) => {
                 <View style={styles.boxTwo}>
                 <TouchableOpacity >
                     <View style={styles.insideBox} >
-                        <Image source={require('../assets/Rectangle59.png')}/>
+                        <Image source={Rectangle1}/>
 
                         <View style={styles.twoText}>
                             <View>
