@@ -1,9 +1,8 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button, Alert, TouchableWithoutFeedback } from 'react-native'
 import { useState } from 'react';
-import MaskGroup from '../assets/MaskGroup.png';
 import { Ionicons } from '@expo/vector-icons'; 
 import { StackNavigationProp } from '@react-navigation/stack';
-import React = require('react');
+import React from 'react';
 
 type RegisterScreenProps = {
   navigation: StackNavigationProp<any, 'RegisterScreen'>;
@@ -45,7 +44,7 @@ const Register: React.FC<RegisterScreenProps> = ({ navigation }) => {
   return (
     <>
       <View style={styles.Main}>
-        <Image style={styles.image} source={MaskGroup} />
+        <Image style={styles.image} source={require('../assets/MaskGroup.png')} />
         <Text style={styles.glad}>Let's start!!</Text>
         <View style={styles.container}>
           <View style={styles.body1}>
@@ -173,28 +172,28 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 16,
   },
-  btn:{
-    height: '32%',
-    display: 'flex',
-    justifyContent: 'flex-end',
+  btn: {
+    height: "32%",
+    display: "flex",
+    justifyContent: "flex-end",
     paddingHorizontal: 30,
   },
   button: {
-    backgroundColor: '#130F26',
+    backgroundColor: "#130F26",
     padding: 20,
     borderRadius: 20,
-    margin: 20,
-    textAlign: 'center',
+    marginBottom: '-10%',
+    textAlign: "center",
   },
   buttonText: {
-    color: '#fff',
-    textAlign: 'center',
+    color: "#fff",
+    textAlign: "center",
     fontSize: 20,
   },
   bottomText: {
     flex: 5,
     alignSelf: 'center',
-    paddingTop: 10,
+    paddingTop: 40,
     color: '#rgba(45, 45, 45, 0.5)',
   },
   lastText: {

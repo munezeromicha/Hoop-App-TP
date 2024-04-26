@@ -4,7 +4,7 @@ import Search from '../assets/SearchTwo.png';
 import buttonOne from '../assets/Group189.png';
 import Rectangle1 from '../assets/Rectangle59.png';
 import Rectangle2 from '../assets/Rectangle60.png';
-import compas from '../assets/location.png';
+import compas from '../assets/Location.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type ExploreScreenProps = {
