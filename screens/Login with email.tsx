@@ -1,10 +1,27 @@
 import { StyleSheet,View, Text, Image, TouchableOpacity, TextInput, TouchableWithoutFeedback, Alert } from 'react-native'
 import React, { useState } from 'react';
-import MaskGroup from '../assets/MaskGroup.png';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
+import { Client, Account, ID } from 'appwrite';
+import Toast from 'react-native-toast-message';
 
+const client = new Client(); 
 
+client
+   .setEndpoint('https://cloud.appwrite.io/v1')
+   .setProject('6626bd912e893160ae48')
+
+const account = new Account(client);
+interface User{}
 const LoginEmail: React.FC<any> = ({navigation}) => {
+
+  const showToasts = () => {
+    Toast.show({
+    type:'success',
+    text1:'Logged In'
+  })
+  }
+
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -21,17 +38,21 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  const handleSubmit= () => {
-    if ( email  && password) {
-      Alert.alert('logged in Successfully!');
-    } else {
-      Alert.alert('Failed', 'Please fill in all fields');
+  const handleSubmit = async() =>{
+    if( email && password){
+      await account.createEmailSession(email, password);
+      setLoggedInUser(await account.get());
+      showToasts();
+      navigation.navigate('Home');
+    }else{
+      Alert.alert('Failed', 'Please fill in all fields')
     }
-  };
+  }
+
   return (
     <>
     <View style={styles.Main}>
-          <Image style={styles.image} source={MaskGroup}/>
+          <Image style={styles.image} source={require('../assets/MaskGroup.png')}/>
         <Text style={styles.glad}>Glad to see you!!</Text>
         <View style={styles.container}>
           <View style={styles.body1}>
@@ -71,7 +92,7 @@ const LoginEmail: React.FC<any> = ({navigation}) => {
           </TouchableOpacity>
       </View>
           <Text style={styles.bottomText}>Don't have an account?
-        <Text style={styles.lastText} onPress={() => {navigation.navigate('register')}}> Sign Up</Text>
+        <Text style={styles.lastText} onPress={() => {navigation.navigate('Register')}}> Sign Up</Text>
       </Text>
        </View> 
     </View>
@@ -189,4 +210,3 @@ lastText1: {
   color: '#F43939',
 },
 })
-
