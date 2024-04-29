@@ -10,40 +10,58 @@ import {
   Alert,
   Pressable,
 } from "react-native";
-import back from "../assets/Group4.png";
+import { Client, Account } from 'appwrite';
+import { supabase } from "../lib/supabase";
 
-const Forget: React.FC<any> = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+const client = new Client()
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('662658e8596ec1427342');
 
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-  };
+const account = new Account(client);
 
-  const handleSubmit = () => {
-    if (email) {
-      Alert.alert("logged in Successfully!");
-    } else {
+interface ForgetProps {
+  navigation: any; // Assuming navigation prop has some properties
+}
+
+const Forget: React.FC<ForgetProps> = ({ navigation }) => {
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>('');
+
+  const handleForgotPassword = async () => {
+    if (!email) {
       Alert.alert("Failed", "Please fill in all fields");
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: 'https://gmail.com/',
+      })
+      setTimeout(()=> {
+        navigation.navigate("Confirm");
+      }, 1000);
+    } catch (error) {
+      console.error('Error sending recovery email:', error);
+      setMessage('Error sending password reset email'); 
     }
   };
+
   return (
     <>
       <View style={styles.Main}>
         <View style={styles.back}>
           <Pressable
-            onPress={() => {
-              navigation.navigate("Login");
-            }}
+            onPress={() => navigation.navigate("Login")}
           >
-            <Image source={back} />
+            <Image source={require("../assets/Group4.png")} />
           </Pressable>
           <Text style={styles.forgot}>Forgot Password</Text>
         </View>
         <View style={styles.middle}>
           <Text style={styles.reset}>Reset password</Text>
           <Text style={styles.text}>
-            Enter the email associated with your {"\n"}
-            account and we’ll send an email with {"\n"}
+            Enter the email associated with your{"\n"}
+            account and we’ll send an email with{"\n"}
             instructions to reset your password.
           </Text>
           <Text style={styles.address}>Email address</Text>
@@ -52,21 +70,14 @@ const Forget: React.FC<any> = ({ navigation }) => {
               style={styles.email}
               placeholder="Email"
               value={email}
-              onChangeText={handleEmailChange}
+              onChangeText={setEmail}
               placeholderTextColor="rgba(45, 45, 45, 0.5)"
             />
           </View>
         </View>
         <View style={styles.btn}>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text
-              style={styles.buttonText}
-              onPress={() => {
-                navigation.navigate("Confirm");
-              }}
-            >
-              Send
-            </Text>
+          <TouchableOpacity style={styles.button} onPress={handleForgotPassword}>
+            <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
         </View>
       </View>

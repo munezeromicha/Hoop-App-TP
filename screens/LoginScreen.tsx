@@ -10,10 +10,9 @@ import {
   Alert,
 } from "react-native";
 import { useState } from "react";
-import MaskGroup from "../assets/MaskGroup.png";
 import { Ionicons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import React = require("react");
+import React from "react";
 
 type LoginScreenProps = {
   navigation: StackNavigationProp<any, "LoginScreen">;
@@ -25,13 +24,18 @@ const LoginEmail: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const handleEmailChange = (value: string) => {
-    setEmail(value);
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (emailRegex.test(value)) {
+      setEmail(value.toLowerCase());
+    }
   };
-
+  
   const handlePasswordChange = (text: string) => {
-    setPassword(text);
+    const passwordRegex = /^[a-zA-Z0-9]+$/;
+    if (passwordRegex.test(text)) {
+      setPassword(text.toLowerCase());
+    }
   };
-
   const togglePasswordVisibility = () => {
     setSecureTextEntry(!secureTextEntry);
   };
@@ -46,7 +50,7 @@ const LoginEmail: React.FC<LoginScreenProps> = ({ navigation }) => {
   return (
     <>
       <View style={styles.Main}>
-        <Image style={styles.image} source={MaskGroup} />
+        <Image style={styles.image} source={require("../assets/MaskGroup.png")} />
         <Text style={styles.glad}>Glad to see you!!</Text>
         <View style={styles.container}>
           <View style={styles.inputs}>
@@ -63,7 +67,7 @@ const LoginEmail: React.FC<LoginScreenProps> = ({ navigation }) => {
               <TextInput
                 style={styles.email1}
                 placeholder="Password"
-                secureTextEntry={secureTextEntry}
+                // secureTextEntry={secureTextEntry}
                 placeholderTextColor="rgba(45, 45, 45, 0.5)"
                 value={password}
                 onChangeText={handlePasswordChange}

@@ -4,11 +4,22 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { database } from "../app-write/config";
 import { Query } from "react-native-appwrite/src";
 
+
+
+let client = new Client();
+client
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('662658e8596ec1427342')
+
+let account = new Account(client);
 type HomeScreenProps = {
   navigation: StackNavigationProp<any, "HomeScreen">;
 };
 
+
+
 const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
+
   const [parking, setParking] = useState<
   |{id:string;
   Heading:string;
@@ -40,10 +51,12 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
     });
   }, []);
 
+
   return (
     <>
       <View style={styles.Main}>
         <Image style={styles.image} source={require("../assets/MaskGroup.png")} />
+
         <View style={styles.TextGroup}>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Text style={styles.glad}>Hola, Diane👋🏻</Text>
@@ -59,7 +72,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
           </TouchableOpacity>
 
           <View style={styles.searchContainer}>
+
             <Image source={require("../assets/Search.png")} style={styles.icon} />
+
             <TextInput
               placeholder="Search"
               style={styles.holderInput}
@@ -130,6 +145,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                         <View style={styles.minutes}>
                           <Text style={styles.sevenMinutes}>7 min</Text>
                         </View>
+
                       </View>
                     )
                   })
@@ -178,9 +194,9 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
               </View>
 {/*
               <View style={styles.boxTwo}>
-                <TouchableOpacity onPress={() =>navigation.navigate('Track')}>
+                <TouchableOpacity onPress={() => navigation.navigate("Track")}>
                   <View style={styles.insideBox}>
-                    <Image source={Rectangle2} />
+                    <Image source={require("../assets/Rectangle2.png")} />
 
                     <View style={styles.twoText}>
                       <View>
@@ -201,6 +217,7 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                   </View>
                 </TouchableOpacity>
               </View> */}
+
             </View>
           </View>
         </View>

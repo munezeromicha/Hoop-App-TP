@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View,TextInput,Image,TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { useMemo, useState } from 'react';
+
 import { StackNavigationProp } from '@react-navigation/stack';
 import { database } from "../app-write/config";
 import { Query } from "react-native-appwrite/src";
@@ -148,6 +149,7 @@ const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
                 )}
               </View>
 
+
               <View style={styles.boxTwo}>
                 {parking.length === 0 ? (
                   <ActivityIndicator color="black" size="large" />
@@ -194,6 +196,7 @@ const Explore: React.FC<ExploreScreenProps> = ({navigation}) => {
       <View >
         <TouchableOpacity style={styles.locate}>
             <Image source={require('../assets/Location.png')} />
+
         </TouchableOpacity>
       </View>
 
